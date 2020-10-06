@@ -27,7 +27,7 @@ es_port: 9200
 
 # Option basic-auth username and password for Elasticsearch
 es_username: elastic
-es_password: changeit
+es_password: changeme
 
 
 # The index on es_host which is used for metadata storage
