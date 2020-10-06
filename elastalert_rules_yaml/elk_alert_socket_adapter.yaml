@@ -1,0 +1,17 @@
+es_host: datana-logs.datana.ru
+es_port: 9200
+name: Socket Adapter Of Datana Smart
+type: frequency
+index: datana-smart-dev-logs-*
+num_events: 30
+timeframe:
+  hours: 4
+filter:
+  - query:
+      query_string:
+        ## simple kostya filter for example with contains '112' chars
+        query: "data.message : *112*"
+alert:
+  - "email"
+email:
+  - "kmwork@ya.ru"
