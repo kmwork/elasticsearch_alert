@@ -26,10 +26,12 @@ echo "[DATANA:SHELL] CONFIG_DIR=$CONFIG_DIR"
 git clone https://github.com/bitsensor/elastalert.git $ELAST_ALERT_DIR
 cd $ELAST_ALERT_DIR
 
+ENV_FILE="$(pwd)/../env_folder/env_dev_stand.env"
+
 ### делаем докер
 docker run -d -p 3030:3030 \
   -v $CONFIG_DIR/config/elastalert.yaml:/opt/elastalert/config.yaml \
   -v $CONFIG_DIR/rules:/opt/elastalert/rules \
   -v $CONFIG_DIR/rule_templates:/opt/elastalert/rule_templates \
   --name elastalert bitsensor/elastalert:latest \
-  --env-file '$(pwd)/../env_folder/env_dev_stand.env'
+  --env-file $ENV_FILE
