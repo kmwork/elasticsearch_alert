@@ -6,7 +6,7 @@
 ### **********************************************
 
 ### читаем переменные окружения для dev стенда
-sh ./set_environment_dev_stand.sh
+sh ./env_dev_stand.env
 
 ### папка для скачки github сорцов
 ELAST_ALERT_DIR=/tmp/datana_temp/elastalert
@@ -20,15 +20,15 @@ mkdir -p $ELAST_ALERT_DIR
 ### путь на наши конфиги
 CONFIG_DIR=$(pwd)/../datana_elastalert
 
-### вывод к консоль для отдадки
+### вывод к консоль для отладки
 echo "[DATANA:SHELL] CONFIG_DIR=$CONFIG_DIR"
-
 ### качаем сорцы
 git clone https://github.com/bitsensor/elastalert.git $ELAST_ALERT_DIR
 cd $ELAST_ALERT_DIR
 
 ### делаем докер
 docker run -d -p 3030:3030 \
+  -env-file "../env_folder/env_dev_stand.env" \
   -v $CONFIG_DIR/config/elastalert.yaml:/opt/elastalert/config.yaml \
   -v $CONFIG_DIR/rules:/opt/elastalert/rules \
   -v $CONFIG_DIR/rule_templates:/opt/elastalert/rule_templates \
