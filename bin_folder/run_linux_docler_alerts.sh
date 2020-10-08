@@ -28,10 +28,18 @@ cd $ELAST_ALERT_DIR
 ### файл - переменные окружения для dev стенда
 ENV_FILE="$BIN_DIR/../env_folder/env_dev_stand.env"
 
+if test -f "$ENV_FILE"; then
+    echo "[DATANA:SHELL] ok, exists file: $ENV_FILE"
+else
+  echo "[DATANA:SHELL] error, not exists file: $ENV_FILE"
+  exit
+fi
+
 ### делаем докер
 docker run -d -p 3030:3030 \
   -v $CONFIG_DIR/config/elastalert.yaml:/opt/elastalert/config.yaml \
   -v $CONFIG_DIR/rules:/opt/elastalert/rules \
   -v $CONFIG_DIR/rule_templates:/opt/elastalert/rule_templates \
   --name elastalert bitsensor/elastalert:latest \
-  --env-file $ENV_FILE
+  --env-file $ENV_FILE \
+  -e "ES_PORT=9200"
