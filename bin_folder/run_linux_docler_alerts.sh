@@ -4,12 +4,14 @@
 ###
 ### взято от сюда https://github.com/Yelp/elastalert
 ### **********************************************
-git clone https://github.com/bitsensor/elastalert.git;
+CONFIG_DIR=$(pwd)/datana_elastalert
+echo "CONFIG_DIR=$CONFIG_DIR"
+git clone https://github.com/bitsensor/elastalert.git
 cd elastalert
 docker run -d -p 3030:3030 \
-    -v `pwd`/config/elastalert.yaml:/opt/elastalert/config.yaml \
-    -v `pwd`/config/config.json:/opt/elastalert-server/config/config.json \
-    -v `pwd`/rules:/opt/elastalert/rules \
-    -v `pwd`/rule_templates:/opt/elastalert/rule_templates \
-    --net="host" \
-    --name elastalert bitsensor/elastalert:latest
+  -v $CONFIG_DIR/config/elastalert.yaml:/opt/elastalert/config.yaml \
+  -v $CONFIG_DIR/config/config.json:/opt/elastalert-server/config/config.json \
+  -v $CONFIG_DIR/rules:/opt/elastalert/rules \
+  -v $CONFIG_DIR/rule_templates:/opt/elastalert/rule_templates \
+  --net="host" \
+  --name elastalert bitsensor/elastalert:latest
