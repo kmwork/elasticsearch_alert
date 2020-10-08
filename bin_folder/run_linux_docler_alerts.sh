@@ -15,7 +15,7 @@ ELAST_ALERT_DIR=/tmp/datana_temp/elastalert
 rm -rf $ELAST_ALERT_DIR
 
 ### создаем папку под сорцы
-mkdir $ELAST_ALERT_DIR
+mkdir -p $ELAST_ALERT_DIR
 
 ### путь на наши конфиги
 CONFIG_DIR=$(pwd)/../datana_elastalert
@@ -24,7 +24,7 @@ CONFIG_DIR=$(pwd)/../datana_elastalert
 echo "[DATANA:SHELL] CONFIG_DIR=$CONFIG_DIR"
 
 ### качаем сорцы
-git clone https://github.com/bitsensor/elastalert.git
+git clone https://github.com/bitsensor/elastalert.git $ELAST_ALERT_DIR
 cd $ELAST_ALERT_DIR
 
 ### делаем докер
