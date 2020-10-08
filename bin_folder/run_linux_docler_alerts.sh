@@ -5,9 +5,6 @@
 ### взято от сюда https://github.com/Yelp/elastalert
 ### **********************************************
 
-### читаем переменные окружения для dev стенда
-sh ./env_dev_stand.env
-
 ### папка для скачки github сорцов
 ELAST_ALERT_DIR=/tmp/datana_temp/elastalert
 
@@ -26,6 +23,7 @@ echo "[DATANA:SHELL] CONFIG_DIR=$CONFIG_DIR"
 git clone https://github.com/bitsensor/elastalert.git $ELAST_ALERT_DIR
 cd $ELAST_ALERT_DIR
 
+### файл - переменные окружения для dev стенда
 ENV_FILE="$(pwd)/../env_folder/env_dev_stand.env"
 
 ### делаем докер
