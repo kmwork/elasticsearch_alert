@@ -4,6 +4,7 @@
 ###
 ### взято от сюда https://github.com/Yelp/elastalert
 ### **********************************************
+sh ./environment_dev_stand.sh
 rm -rf $(pwd)/elastalert
 CONFIG_DIR=$(pwd)/../datana_elastalert
 echo "CONFIG_DIR=$CONFIG_DIR"
