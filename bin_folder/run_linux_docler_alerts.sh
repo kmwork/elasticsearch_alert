@@ -28,8 +28,8 @@ cd $ELAST_ALERT_DIR
 
 ### делаем докер
 docker run -d -p 3030:3030 \
-  -env-file "../env_folder/env_dev_stand.env" \
   -v $CONFIG_DIR/config/elastalert.yaml:/opt/elastalert/config.yaml \
   -v $CONFIG_DIR/rules:/opt/elastalert/rules \
   -v $CONFIG_DIR/rule_templates:/opt/elastalert/rule_templates \
-  --name elastalert bitsensor/elastalert:latest
+  --name elastalert bitsensor/elastalert:latest \
+  --env-file '$(pwd)/../env_folder/env_dev_stand.env'
