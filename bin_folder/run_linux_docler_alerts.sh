@@ -9,10 +9,13 @@
 sh ./set_environment_dev_stand.sh
 
 ### папка для скачки github сорцов
-ELAST_ALERT_DIR=/temp/datana_temp/elastalert
+ELAST_ALERT_DIR=/tmp/datana_temp/elastalert
 
 ### удаляем старый мусор
 rm -rf $ELAST_ALERT_DIR
+
+### создаем папку под сорцы
+mkdir $ELAST_ALERT_DIR
 
 ### путь на наши конфиги
 CONFIG_DIR=$(pwd)/../datana_elastalert
