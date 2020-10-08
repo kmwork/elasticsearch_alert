@@ -1,9 +1,9 @@
 # The elasticsearch hostname for metadata writeback
 # Note that every rule can have its own elasticsearch host
-es_host: localhost
+es_host: ${ENV_ES_HOST}
 
 # The elasticsearch port
-es_port: 9200
+es_port: ${ENV_ES_PORT}
 
 # This is the folder that contains the rule yaml files
 # Any .yaml file will be loaded as a rule
