@@ -30,7 +30,6 @@ cd $ELAST_ALERT_DIR
 ### делаем докер
 docker run -d -p 3030:3030 \
   -v $CONFIG_DIR/config/elastalert.yaml:/opt/elastalert/config.yaml \
-  -v $CONFIG_DIR/config/config.json:/opt/elastalert-server/config/config.json \
   -v $CONFIG_DIR/rules:/opt/elastalert/rules \
   -v $CONFIG_DIR/rule_templates:/opt/elastalert/rule_templates \
   --name elastalert bitsensor/elastalert:latest
