@@ -25,6 +25,9 @@ echo "[DATANA:SHELL] CONFIG_DIR=$CONFIG_DIR"
 git clone https://github.com/bitsensor/elastalert.git $ELAST_ALERT_DIR
 cd $ELAST_ALERT_DIR
 
+### удаляем наблоны кривые
+rm -rf ./rule_templates
+
 ### файл - переменные окружения для dev стенда
 ENV_FILE="$BIN_DIR/../env_folder/env_dev_stand.env"
 
