@@ -34,10 +34,8 @@ else
   echo "[DATANA:SHELL] error, not exists file: $ENV_FILE"
   exit
 fi
-
-### делаем докер
+#
+#### делаем докер
 docker run --env-file $ENV_FILE  -d -p 3030:3030 \
   -v $CONFIG_DIR/config/elastalert.yaml:/opt/elastalert/config.yaml \
-  -v $CONFIG_DIR/rules:/opt/elastalert/rules \
-  -v $CONFIG_DIR/rule_templates:/opt/elastalert/rule_templates \
   --name elastalert bitsensor/elastalert:latest
