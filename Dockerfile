@@ -36,10 +36,10 @@ COPY --from=py-ea /opt/elastalert /opt/elastalert
 COPY --from=py-ea /usr/bin/elastalert* /usr/bin/
 
 WORKDIR /opt/elastalert-server
-COPY . /opt/elastalert-server
+COPY datana_elastalert /opt/elastalert-server
 
 RUN npm install --production --quiet
-COPY config/elastalert.yaml /opt/elastalert/config.yaml
+COPY datana_elastalert/config/elastalert.yaml /opt/elastalert/config.yaml
 COPY config/elastalert-test.yaml /opt/elastalert/config-test.yaml
 COPY config/config.json config/config.json
 COPY rule_templates /opt/elastalert/rule_templates
