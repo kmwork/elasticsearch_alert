@@ -1,7 +1,7 @@
 FROM python:alpine as builder
-
+# Заимтовано от https://hub.docker.com/r/jertel/elastalert-docker/dockerfile
 LABEL description="ElastAlert suitable for Kubernetes and Helm"
-LABEL maintainer="Jason Ertel (jertel at codesim.com)"
+LABEL maintainer="Datana Ltd, city Moscow"
 
 RUN apk --update upgrade && \
     apk add git && \
