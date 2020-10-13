@@ -41,6 +41,9 @@ writeback_alias: elastalert_alerts
 alert_time_limit:
   days: 2
 
+
+es_url_prefix: "http://"
+
 # Custom logging configuration
 # If you want to setup your own logging configuration to log into
 # files as well or to Logstash and/or modify log levels, use

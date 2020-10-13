@@ -13,6 +13,15 @@ echo "[DATANA:SHELL] ================================ Build dockerfile =========
 ### файл - переменные окружения для dev стенда
 ENV_FILE="$BIN_DIR/env_folder/env_dev_stand.env"
 
+if test -f "$ENV_FILE"; then
+    echo "[DATANA:SHELL] ok, exists file: $ENV_FILE"
+else
+  echo "[DATANA:SHELL] error, not exists file: $ENV_FILE"
+  exit
+fi
+#
+
+
 ### путь на наши конфиги
 CONFIG_DIR=$BIN_DIR/datana_elastalert
 
