@@ -18,7 +18,7 @@ ENV_FILE="$BIN_DIR/env_folder/env_dev_stand.env"
 CONFIG_DIR=$BIN_DIR/datana_elastalert
 
 echo "[DATANA:SHELL] ================================ Run dockerfile ================================"
-docker run --env-file $ENV_FILE $DS_DOCKER_NAME \
+printf '\n' | docker run --env-file $ENV_FILE $DS_DOCKER_NAME \
   -d -p 3030:3030 \
   -v $CONFIG_DIR/config/elastalert.yaml:/opt/elastalert/config.yaml \
 
