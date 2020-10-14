@@ -27,7 +27,7 @@ ENV ES_USE_SSL=$ES_USE_SSL
 RUN echo "[Datana] Welcome to alerts"
 
 ## копирование конфигов
-COPY ./elastalert_rules_yaml/*.yaml /opt/config/*.yaml
+COPY ./elastalert_rules_yaml/elastalert_config.yaml /opt/config/elastalert_config.yaml
 
 WORKDIR /opt/elastalert
 ENTRYPOINT ["/opt/elastalert/run.sh"]
