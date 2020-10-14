@@ -2,9 +2,8 @@ es_host: datana-logs.datana.ru
 es_port: 9200
 name: Socket Adapter Of Datana Smart
 type: frequency
-### ???
 index: datana-smart-dev-logs-*
-num_events: 30
+num_events: 10
 timeframe:
   hours: 4
 filter:
@@ -13,6 +12,11 @@ filter:
         ## simple kostya filter for example with contains '112' chars
         query: "data.message : *112*"
 alert:
-  - "email"
-email:
-  - "kmwork@ya.ru"
+  - "telegram"
+
+## телеграм для релизов датаны (для примера взято)
+##      def final constTelegramReleaseURL = "https://api.telegram.org/bot1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo/sendMessage?chat_id=-1001451379215&parse_mode=HTML"
+
+telegram_bot_token: 1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
+
+telegram_room_id: "@DatanaReleaseEvent"

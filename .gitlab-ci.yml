@@ -1,103 +1,36 @@
-# Cache template
-.default-cache: &default-cache
-  key: elastalert
-  paths:
-    - node_modules
+image: docker:git
+#image: registry.datana.ru/alpine-java-docker
 
-.push-cache: &push-cache
-  cache:
-    <<: *default-cache
-    policy: push
+services:
+  - docker:dind
 
-.pull-cache: &pull-cache
-  cache:
-    <<: *default-cache
-    policy: pull
-
-.node_test: &node-test
-  <<: *pull-cache
-  image: node:slim
-  stage: test
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  IMAGE_VERSION: 0.1.1
+  IMAGE_NAME: $DOCKER_REGISTRY_HOST/elk_alerts
 
 stages:
-  - build
-  - test
   - deploy
 
-cache:
-  key: elastalert
-  paths:
-    - node_modules/
-  policy: pull
+before_script:
+  - echo "$CI_BUILD_NAME, $CI_BUILD_REF_NAME $CI_BUILD_STAGE" # debug
 
-build:
-  <<: *push-cache
-  image: node:slim
-  stage: build
-  script:
-    - npm install --quiet
-    - npm run build
-
-test:
-  <<: *node-test
-  script:
-    - npm install --quiet
-    - npm test
-
-deploy:docker:
-  stage: deploy
-  script:
-    - sh scripts/replace_templates.sh ${CI_JOB_TOKEN}
-    - docker info
-    - echo $BITSENSOR_PASSWORD | docker login -u $BITSENSOR_USERNAME --password-stdin docker.bitsensor.io
-    - docker build -t elastalert .
-    - docker tag elastalert docker.bitsensor.io/elastalert:latest
-    - docker tag elastalert docker.bitsensor.io/elastalert:$(git describe --abbrev=0)
-    - docker push docker.bitsensor.io/elastalert:latest
-    - docker push docker.bitsensor.io/elastalert:$(git describe --abbrev=0)
-  only:
-    - tags
-  tags:
-    - docker
-
-deploy:docker:snapshot:
-  stage: deploy
-  script:
-    - sh scripts/replace_templates.sh ${CI_JOB_TOKEN}
-    - docker info
-    - echo $BITSENSOR_PASSWORD | docker login -u $BITSENSOR_USERNAME --password-stdin docker.bitsensor.io
-    - docker build -t elastalert .
-    - docker tag elastalert docker.bitsensor.io/elastalert:snapshot
-    - docker push docker.bitsensor.io/elastalert:snapshot
-  only:
-    - develop
-  tags:
-    - docker
-
-deploy:docker-hub:
+deploy:
   stage: deploy
   script:
     - docker info
-    - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-    - docker build -t elastalert .
-    - docker tag elastalert bitsensor/elastalert:latest
-    - docker tag elastalert bitsensor/elastalert:$(git describe --abbrev=0)
-    - docker push bitsensor/elastalert:latest
-    - docker push bitsensor/elastalert:$(git describe --abbrev=0)
+    - echo "-t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest "
+    #        - docker login -u "$DOCKER_REGISTRY_USER" -p "$DOCKER_REGISTRY_PASS" "$DOCKER_REGISTRY_HOST"
+    - echo "$DOCKER_REGISTRY_PASS" | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY_HOST
+    - docker build -t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest .
+    - docker push $IMAGE_NAME:$IMAGE_VERSION
+    - docker push $IMAGE_NAME:latest
+    - docker logout $DOCKER_REGISTRY_HOST
   only:
-    - tags
-  tags:
-    - docker
+    - dev
+    - master
 
-deploy:docker-hub:snapshot:
-  stage: deploy
-  script:
-    - docker info
-    - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-    - docker build -t elastalert .
-    - docker tag elastalert bitsensor/elastalert:snapshot
-    - docker push bitsensor/elastalert:snapshot
-  only:
-    - develop
-  tags:
-    - docker
+after_script:
+  - echo "End CI"
