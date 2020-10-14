@@ -29,14 +29,11 @@ else
   exit
 fi
 
-
-export ES_HOST=datana-logs.datana.ru
-export ES_PORT=9200
-export ES_USERNAME=elastic
-export ES_PASSWORD=changeme
-export ES_USE_SSL=False
-
 echo "[DATANA:SHELL] ================================ Run dockerfile ================================"
-docker run -d -v $CONFIG_FILE:/opt/config/config.yaml \
-  --env-file $ENV_FILE \
-  $DS_DOCKER_NAME
+#docker run -d -p 3030:3030 \
+#  -v $CONFIG_FILE:/opt/elastalert/elastalert_config.yaml \
+#  --env-file $ENV_FILE \
+#  $DS_DOCKER_NAME
+### docker run -d -v $CONFIG_FILE:/opt/config/elastalert_config.yaml jertel/elastalert-docker
+docker run -d -v $CONFIG_FILE:/opt/config/config.yaml jertel/elastalert-docker \
+  --env-file $ENV_FILE
