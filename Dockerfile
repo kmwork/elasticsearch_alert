@@ -14,19 +14,19 @@ ENV TZ "UTC"
 ENV LANG=C.UTF-8
 
 # value = datana-logs.datana.ru
-ENV ES_HOST=$ES_HOST
+ENV ES_HOST=${ES_HOST}
 
 # value = 9200
-ENV ES_PORT=$ES_PORT
+ENV ES_PORT=${ES_PORT}
 
 # value = elastic
-ENV ES_USERNAME=$ES_USERNAME
+ENV ES_USERNAME=${ES_USERNAME}
 
 # value = changeme
-ENV ES_PASSWORD=$ES_PASSWORD
+ENV ES_PASSWORD=${ES_PASSWORD}
 
 # value = False
-ENV ES_USE_SSL=$ES_USE_SSL
+ENV ES_USE_SSL=${ES_USE_SSL}
 
 ## для отладки
 RUN echo "[Datana] Welcome to alerts"
