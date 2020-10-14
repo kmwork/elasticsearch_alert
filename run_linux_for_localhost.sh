@@ -37,6 +37,6 @@ export ES_PASSWORD=changeme
 export ES_USE_SSL=False
 
 echo "[DATANA:SHELL] ================================ Run dockerfile ================================"
-docker -D run  -d \
-    --env-file $ENV_FILE \
-    $DS_DOCKER_NAME
+docker run -d -v $CONFIG_FILE:/opt/config/config.yaml \
+  --env-file $ENV_FILE \
+  $DS_DOCKER_NAME

@@ -7,8 +7,7 @@ MAINTAINER Datana Ltd https://datana.ru
 
 
 ## копирование конфигов
-RUN mkdir -p /opt/config
-COPY ./elastalert_rules_yaml/elastalert_config.yaml /opt/config/elastalert_config.yaml
+COPY ./elastalert_rules_yaml /opt/config
 
 ENV TZ "UTC"
 ENV LANG=C.UTF-8
@@ -27,9 +26,6 @@ ENV ES_PASSWORD=${ES_PASSWORD}
 
 # value = False
 ENV ES_USE_SSL=${ES_USE_SSL}
-
-## для отладки
-RUN echo "[Datana] Welcome to alerts"
 
 WORKDIR /opt/elastalert
 ENTRYPOINT ["/opt/elastalert/run.sh"]
