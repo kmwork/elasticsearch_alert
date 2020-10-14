@@ -34,4 +34,6 @@ echo "[DATANA:SHELL] ================================ Run dockerfile ===========
 #  -v $CONFIG_FILE:/opt/elastalert/elastalert_config.yaml \
 #  --env-file $ENV_FILE \
 #  $DS_DOCKER_NAME
-docker run -d -v $CONFIG_FILE:/opt/config/elastalert_config.yaml jertel/elastalert-docker
+### docker run -d -v $CONFIG_FILE:/opt/config/elastalert_config.yaml jertel/elastalert-docker
+docker run -d -v $CONFIG_FILE:/opt/config/elastalert_config.yaml jertel/elastalert-docker \
+  --env-file $ENV_FILE
