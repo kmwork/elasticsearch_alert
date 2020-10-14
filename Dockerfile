@@ -5,6 +5,11 @@ LABEL description="ElastAlert suitable for Kubernetes and Helm"
 
 MAINTAINER Datana Ltd https://datana.ru
 
+
+## копирование конфигов
+RUN mkdir -p /opt/config
+COPY ./elastalert_rules_yaml/elastalert_config.yaml /opt/config/elastalert_config.yaml
+
 ENV TZ "UTC"
 ENV LANG=C.UTF-8
 
@@ -25,9 +30,6 @@ ENV ES_USE_SSL=$ES_USE_SSL
 
 ## для отладки
 RUN echo "[Datana] Welcome to alerts"
-
-## копирование конфигов
-COPY ./elastalert_rules_yaml/elastalert_config.yaml /opt/config/elastalert_config.yaml
 
 WORKDIR /opt/elastalert
 ENTRYPOINT ["/opt/elastalert/run.sh"]
