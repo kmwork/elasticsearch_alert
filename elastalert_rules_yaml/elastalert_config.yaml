@@ -32,9 +32,9 @@ es_password: changeme
 
 # The index on es_host which is used for metadata storage
 # This can be a unmapped index, but it is recommended that you run
-# elastalert-create-index to set a mapping
-writeback_index: elastalert_status
-writeback_alias: elastalert_alerts
+#  to set a mapping
+writeback_index: dev_index_alert
+writeback_alias: dev_alerts
 
 # If an alert fails for some reason, ElastAlert will retry
 # sending the alert until this time period has elapsed
@@ -42,7 +42,7 @@ alert_time_limit:
   days: 2
 
 use_ssl: false
-es_url_prefix: "http://"
+###es_url_prefix: dev
 
 # Custom logging configuration
 # If you want to setup your own logging configuration to log into

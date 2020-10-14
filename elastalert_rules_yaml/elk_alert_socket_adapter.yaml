@@ -2,6 +2,7 @@ es_host: datana-logs.datana.ru
 es_port: 9200
 name: Socket Adapter Of Datana Smart
 type: frequency
+### ???
 index: datana-smart-dev-logs-*
 num_events: 30
 timeframe:
