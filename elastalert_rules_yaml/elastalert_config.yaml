@@ -87,9 +87,9 @@ logging:
         handlers: []
         propagate: true
 
-      '':  # root logger
-        level: DEBUG
-          handlers:
-            - console
-            - file
-        propagate: false
+#      '':  # root logger
+#        level: DEBUG
+#          handlers:
+#            - console
+#            - file
+#        propagate: false
