@@ -27,3 +27,15 @@ ES_USE_SSL=False
 
 ## адрес ELK
 ## http://datana-logs.datana.ru:9200/
+
+
+## Как запустить докер
+### на сборку докера
+```
+docker build .
+```
+### на запуск
+```
+docker run --env-file=./env_folder/env_dev_stand.env -p 3030:3030 -it 1ee7aaa809e0
+```
+где 1ee7aaa809e0 -- хеш-код от первой команды `docker build .`
