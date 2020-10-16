@@ -9,7 +9,7 @@ MAINTAINER Datana Ltd https://datana.ru
 ## копирование конфигов
 RUN mkdir -p /opt/config
 ## ADD /tmp/datana/elastalert/elastalert_config.yaml /opt/config/elastalert_config.yaml
-COPY elastalert_config.yaml /opt/config/elastalert_config.yaml
+COPY /temp_work/elastalert_config.yaml /opt/config/elastalert_config.yaml
 
 ENV TZ "UTC"
 ENV LANG=C.UTF-8

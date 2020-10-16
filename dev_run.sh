@@ -10,7 +10,7 @@ DS_DOCKER_NAME="datana-smart/proba_elastalert:0.0.1"
 
 
 ## временнвая папка
-WORK_TEMP_DIR=/tmp/datana/elastalert
+WORK_TEMP_DIR=$BIN_DIR/temp_work
 mkdir -p $WORK_TEMP_DIR
 
 ### файл - переменные окружения для dev стенда
@@ -51,7 +51,6 @@ echo "[DATANA:SHELL] ================================ Run dockerfile ===========
 #  $DS_DOCKER_NAME
 
 echo "[DATANA:SHELL] ================================ Build dockerfile ================================"
-cd $WORK_TEMP_DIR
 docker build --tag $DS_DOCKER_NAME $BIN_DIR
 
 docker run -d -p 3030:3030 --env-file=$ENV_FILE $DS_DOCKER_NAME
