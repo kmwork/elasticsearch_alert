@@ -35,6 +35,8 @@ es_password: ${ES_PASSWORD}
 #  to set a mapping
 writeback_index: dev_index_alert
 writeback_alias: dev_alerts
+#writeback_index: elastalert_status
+#writeback_alias: elastalert_alerts
 
 # If an alert fails for some reason, ElastAlert will retry
 # sending the alert until this time period has elapsed
@@ -66,7 +68,7 @@ logging:
         stream: ext://sys.stderr
 
       file:
-        class : logging.FileHandler
+        class: logging.FileHandler
         formatter: logline
         level: DEBUG
         filename: elastalert.log
@@ -86,3 +88,10 @@ logging:
         level: DEBUG
         handlers: []
         propagate: true
+
+      '':  # root logger
+        level: DEBUG
+        handlers:
+          - console
+          - file
+        propagate: false
