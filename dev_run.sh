@@ -45,12 +45,8 @@ else
 fi
 
 echo "[DATANA:SHELL] ================================ Run dockerfile ================================"
-#docker run -d -p 3030:3030 \
-#  -v $CONFIG_FILE:/opt/elastalert/elastalert_config.yaml \
-#  --env-file=$ENV_FILE \
-#  $DS_DOCKER_NAME
 
 docker run -d -p 3030:3030 \
   -v $CONFIG_FILE:/opt/config/elastalert_config.yaml \
   --env-file=$ENV_FILE \
-  jertel/elastalert-docker:latest
+  $DS_DOCKER_NAME
