@@ -7,8 +7,7 @@
 BIN_DIR=$(pwd)
 
 DS_DOCKER_NAME="datana-smart/proba_elastalert:0.0.1"
-echo "[DATANA:SHELL] ================================ Build dockerfile ================================"
-docker build --tag $DS_DOCKER_NAME $BIN_DIR
+
 
 ## временнвая папка
 WORK_TEMP_DIR=/tmp/datana/elastalert
@@ -45,8 +44,14 @@ else
 fi
 
 echo "[DATANA:SHELL] ================================ Run dockerfile ================================"
+#
+#docker run -d -p 3030:3030 \
+#  -v $CONFIG_FILE:/opt/config/elastalert_config.yaml \
+#  --env-file=$ENV_FILE \
+#  $DS_DOCKER_NAME
 
-docker run -d -p 3030:3030 \
-  -v $CONFIG_FILE:/opt/config/elastalert_config.yaml \
-  --env-file=$ENV_FILE \
-  $DS_DOCKER_NAME
+echo "[DATANA:SHELL] ================================ Build dockerfile ================================"
+cd $WORK_TEMP_DIR
+docker build --tag $DS_DOCKER_NAME $BIN_DIR
+
+docker run -d -p 3030:3030 --env-file=$ENV_FILE $DS_DOCKER_NAME
