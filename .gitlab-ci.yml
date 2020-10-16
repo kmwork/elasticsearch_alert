@@ -8,7 +8,7 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://docker:2375
   DOCKER_TLS_CERTDIR: ""
-  IMAGE_VERSION: 0.1.1
+  IMAGE_VERSION: 0.0.1
   IMAGE_NAME: $DOCKER_REGISTRY_HOST/datana_smart_alerts
 
 stages:
@@ -16,7 +16,9 @@ stages:
 
 before_script:
   - echo "$CI_BUILD_NAME, $CI_BUILD_REF_NAME $CI_BUILD_STAGE" # debug
-
+  - echo "[DATANA:START] prepare files by calling for_gitlib-ci.sh"
+  - sh for_gitlib-ci.sh
+  - echo "[DATANA:END] prepare files -- ok!!!"
 deploy:
   stage: deploy
   script:
