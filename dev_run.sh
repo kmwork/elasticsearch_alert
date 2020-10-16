@@ -8,7 +8,7 @@ BIN_DIR=$(pwd)
 
 DS_DOCKER_NAME="datana-smart/proba_elastalert:0.0.1"
 echo "[DATANA:SHELL] ================================ Build dockerfile ================================"
-##### docker build --tag $DS_DOCKER_NAME $BIN_DIR
+docker build --tag $DS_DOCKER_NAME $BIN_DIR
 
 ## временнвая папка
 WORK_TEMP_DIR=/tmp/datana/elastalert
@@ -27,7 +27,7 @@ export ES_HOST=datana-logs.datana.ru
 export ES_PORT=9200
 export ES_USERNAME=elastic
 export ES_PASSWORD=changeme
-export ES_USE_SSL=False
+export ES_USE_SSL=false
 cat $CONFIG_FILE_TEMPLATE | envsubst > $CONFIG_FILE
 cat $ENV_FILE_TEMPLATE | envsubst > $ENV_FILE
 
