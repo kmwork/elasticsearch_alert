@@ -12,7 +12,7 @@
 ## как запускать на машине логов без докера
 ### как пример: 
 ```
-elastalert-test-rule /home/lin/work-lanit-papa/datana-smart-alert-M10-D06/elastalert_rules_yaml/elk_alert_socket_adapter.yaml /home/lin/work-lanit-papa/datana-smart-alert-M10-D06/temp_work/elastalert_config.yaml
+elastalert-test-rule elk_alert_socket_adapter.yaml /home/lin/work-lanit-papa/datana-smart-alert-M10-D06/temp_work/elastalert_config.yaml
 ```
 ### в докере
 ```
