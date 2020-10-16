@@ -9,12 +9,16 @@
 ++ elk_alert_socket_adapter.yaml -- проба пера для Socker Адаптер по alert
 ```
 
-## как запускать на машине логов без докера или внутри докера
+## как запускать на машине логов без докера
 ### как пример: 
 ```
 user@datana-logs:~/datana-work/elk-alert$ elastalert-test-rule elk_alert_socket_adapter.yaml 
 ```
-   
+### в докере
+```
+elastalert-test-rule /datana_alert_rules/elk_alert_socket_adapter.yaml --config /opt/config/elastalert_config.yaml
+```
+ 
 ### докер переменные окружения для dev стенда
 ES_HOST=datana-logs.datana.ru
 ES_PORT=9200
