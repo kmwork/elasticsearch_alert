@@ -12,14 +12,14 @@
 ## как запускать на машине логов без докера
 ### как пример: 
 ```
-elastalert-test-rule elk_alert_socket_adapter.yaml --config /../temp_work/elastalert_config.yaml
+elastalert-test-rule elk_alert_socket_adapter.yaml --config ./../temp_work/elastalert_config.yaml
 ```
 ### в докере
 ```
 elastalert-test-rule /datana_alert_rules/elk_alert_socket_adapter.yaml --config /opt/config/elastalert_config.yaml
 ```
  
-### докер переменные окружения для dev стенда
+### докер переменные окружения для dev стенд
 ES_HOST=datana-logs.datana.ru
 ES_PORT=9200
 ES_USERNAME=elastic
