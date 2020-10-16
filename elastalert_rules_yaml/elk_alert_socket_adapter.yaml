@@ -10,7 +10,8 @@ filter:
   - query:
       query_string:
         ## simple kostya filter for example with contains '112' chars
-        query: "data.message : *112*"
+        ###query: "data.message : *112*"
+        query: "level.keyword : INFO"
 alert:
   - "telegram"
 
