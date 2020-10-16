@@ -14,10 +14,10 @@ buffer_time:
 
 # The Elasticsearch hostname for metadata writeback
 # Note that every rule can have its own Elasticsearch host
-es_host: datana-logs.datana.ru
+es_host: ${ES_HOST}
 
 # The Elasticsearch port
-es_port: 9200
+es_port: ${ES_PORT}
 
 # GET request with body is the default option for Elasticsearch.
 # If it fails for some reason, you can pass 'GET', 'POST' or 'source'.
@@ -26,8 +26,8 @@ es_port: 9200
 #es_send_get_body_as: GET
 
 # Option basic-auth username and password for Elasticsearch
-es_username: elastic
-es_password: changeme
+es_username: ${ES_USERNAME}
+es_password: ${ES_PASSWORD}
 
 
 # The index on es_host which is used for metadata storage
@@ -41,7 +41,7 @@ writeback_alias: dev_alerts
 alert_time_limit:
   days: 2
 
-use_ssl: false
+use_ssl: ${ES_USE_SSL}
 ###es_url_prefix: dev
 
 # Custom logging configuration
@@ -86,10 +86,3 @@ logging:
         level: DEBUG
         handlers: []
         propagate: true
-
-#      '':  # root logger
-#        level: DEBUG
-#          handlers:
-#            - console
-#            - file
-#        propagate: false
