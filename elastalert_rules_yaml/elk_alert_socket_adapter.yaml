@@ -12,7 +12,8 @@ filter:
         ## simple kostya filter for example with contains '112' chars
         ###query: "data.message : *112*"
         ###query: "level.keyword : WARN"
-      query: "level.keyword : INFO"
+        ###query: "level.keyword : INFO"
+        query: "data.requestTransportInfoId : ef171ac4-d89d-4ed5-9bb0-bf0f57d5bb03"
 alert:
   - "telegram"
 

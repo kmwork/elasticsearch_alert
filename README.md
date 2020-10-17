@@ -12,7 +12,7 @@
 ## как запускать на машине логов без докера
 ### как пример: 
 ```
- elastalert-test-rule elk_alert_socket_adapter.yaml --alert --days=1 --config ./../temp_work/elastalert_config.yaml 
+elastalert-test-rule elk_alert_socket_adapter.yaml --alert --days=1 --config ./../temp_work/elastalert_config.yaml 
 ```
 ### в докере
 ```
