@@ -11,7 +11,8 @@ filter:
       query_string:
         ## simple kostya filter for example with contains '112' chars
         ###query: "data.message : *112*"
-        query: "level.keyword : INFO"
+        ###query: "level.keyword : WARN"
+      query: "level.keyword : INFO"
 alert:
   - "telegram"
 
@@ -21,3 +22,7 @@ alert:
 telegram_bot_token: 1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
 
 telegram_room_id: "@DatanaReleaseEvent"
+
+alert_text: "from elastalert - {0}, {1}, {2}"
+alert_text_args: ["type", "username2", "timestamp"]
+alert_text_type: alert_text_only
