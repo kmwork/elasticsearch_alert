@@ -13,7 +13,9 @@ filter:
         ###query: "data.message : *112*"
         ###query: "level.keyword : WARN"
         ###query: "level.keyword : INFO"
-        query: "data.requestTransportInfoId : ef171ac4-d89d-4ed5-9bb0-bf0f57d5bb03"
+        ### ok message#### query: "data.requestTransportInfoId : ef171ac4-d89d-4ed5-9bb0-bf0f57d5bb03"
+        query: "@timestamp gte now-1d/d AND @timestamp lte now/d"
+      ###           @timestamp gte 'now-1s/s'
 alert:
   - "telegram"
 
