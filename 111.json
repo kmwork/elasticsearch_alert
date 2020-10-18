@@ -1,0 +1,26 @@
+{
+  "_index": "datana-smart-dev-logs-20201018",
+  "_type": "_doc",
+  "_id": "J8pcPHUBuKyYo1ev_J_D",
+  "_version": 1,
+  "_score": null,
+  "_source": {
+    "@version": "1",
+    "@timestamp": "2020-10-18T15:38:48.258Z",
+    "HOSTNAME": "worker1.datana.ru",
+    "message": "[Consumer clientId=consumer-kafka-cassandra-sink-connector-Dima-1, groupId=kafka-cassandra-sink-connector-Dima] Committed offset 0 for partition test-kafka-cassandra-topic-Dima-0",
+    "logger_name": "org.apache.kafka.clients.consumer.internals.ConsumerCoordinator",
+    "container-id": "worker1.datana.ru",
+    "component": "adapter-socket",
+    "thread_name": "org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1",
+    "level": "DEBUG"
+  },
+  "fields": {
+    "@timestamp": [
+      "2020-10-18T15:38:48.258Z"
+    ]
+  },
+  "sort": [
+    1603035528258
+  ]
+}

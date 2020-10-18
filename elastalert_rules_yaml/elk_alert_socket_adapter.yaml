@@ -10,19 +10,17 @@ index: datana-smart-test-logs-*
 # A rule that matches if num_events number of events occur within a timeframe
 num_events: 10
 
+###################################
+type: flatline
+
 timeframe:
-  seconds: 1
-use_count_query: true
+  seconds: 2
+use_count_query: True
 
-type: spike
-spike_height: 1
 
-# spike_type``spike_type``: Either 'up', 'down' or 'both'. 'Up' meaning the rule will only match when the number of events is ``spike_height`` times
-#  higher. 'Down' meaning the reference number is ``spike_height`` higher than the current number. 'Both' will match either.
-spike_type: down
-threshold_cur: 1
+threshold: 2
 
-doc_type: doc
+doc_type: "_doc"
 
 filter:
   - query:
