@@ -12,7 +12,7 @@ aggregation:
 filter:
   - query:
       query_string:
-        query: "(@timestamp >=: 'now-1s') AND NOT (logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
+        query: "(@timestamp >= 'now-1s') AND NOT (logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
 alert:
   - "telegram"
   -
