@@ -20,7 +20,7 @@ filter:
         ######################query: "@timestamp gte now-1d/d AND @timestamp lte now/d"
         ## query : "_exists_: @timestamp >= 'now-1s/s'"
         ##query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api"
-        query: "@timestamp >=: 'now-1s'"
+        query: "_exists_: @timestamp >=: 'now-1s' AND NOT _exists_: logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID"
 ### ok3 ### logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID\: 8e630dd0-5796-45e0-8d85-8a14c5d872dd*
       ### warn-ok3 ### logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID\: 8e630dd0-5796-45e0-8d85-8a14c5d872dd* AND @timestamp >= "now-1s/s"
 alert:
