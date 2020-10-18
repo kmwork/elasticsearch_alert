@@ -8,14 +8,14 @@ min_cardinality: 1
 index: datana-smart-dev-logs-*
 num_events: 10
 timeframe:
-  seconds: 1
+  seconds: 100
 aggregation_key: "@timestamp"
 aggregation:
-  seconds: 1
+  seconds: 10
 filter:
   - query:
       query_string:
-        query: "@timestamp >= 'now-1s' AND NOT(_exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
+        query: "NOT(_exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
 
         ###query: "(@timestamp >= 'now-1s') AND (NOT _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND NOT _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
 alert:
