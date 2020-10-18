@@ -2,9 +2,9 @@ es_host: datana-logs.datana.ru
 es_port: 9200
 name: Socket Adapter Of Datana Smart
 #cardinality: This rule matches when a the total number of unique values for a certain field within a time frame is higher or lower than a threshold.
-type: cardinality
+type: flatline
 cardinality_field: "@timestamp"
-min_cardinality: 1
+threshold: 1
 ##index: datana-smart-dev-logs-*
 index: datana-smart-test-logs-*
 #num_events: 10
@@ -13,8 +13,9 @@ timeframe:
 filter:
   - query:
       query_string:
-        query: "(@timestamp >= 'now-1s') AND NOT (_exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
+        query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
 
+        ### query: "@timestamp >= 'now-1s' AND _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
         ###query: "(@timestamp >= 'now-1s') AND (NOT _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND NOT _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
 alert:
   - "telegram"
