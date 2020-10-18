@@ -25,6 +25,8 @@ filter:
       ### warn-ok3 ### logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID\: 8e630dd0-5796-45e0-8d85-8a14c5d872dd* AND @timestamp >= "now-1s/s"
 alert:
   - "telegram"
+  -
+use_local_time: True
 
 ## телеграм для релизов датаны (для примера взято)
 ##      def final constTelegramReleaseURL = "https://api.telegram.org/bot1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo/sendMessage?chat_id=-1001451379215&parse_mode=HTML"
