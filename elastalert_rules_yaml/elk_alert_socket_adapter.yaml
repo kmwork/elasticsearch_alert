@@ -5,8 +5,6 @@ run_every:
 
 name: Socket Adapter Of Datana Smart
 
-type: flatline
-threshold: 1
 ####index: datana-smart-dev-logs-*
 index: datana-smart-test-logs-*
 # A rule that matches if num_events number of events occur within a timeframe
@@ -15,6 +13,14 @@ num_events: 10
 timeframe:
   hours: 10
 use_count_query: true
+
+################################################333333
+
+type: spike
+spike_height: 2
+spike_type: up
+threshold_ref: 1
+##############################################33
 doc_type: doc
 #filter:
 #  - query:
