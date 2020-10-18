@@ -5,17 +5,18 @@ name: Socket Adapter Of Datana Smart
 type: cardinality
 cardinality_field: "@timestamp"
 min_cardinality: 1
-index: datana-smart-dev-logs-*
+##index: datana-smart-dev-logs-*
+index: datana-smart-test-logs-*
 num_events: 10
 timeframe:
-  seconds: 100
+  seconds: 1
 aggregation_key: "@timestamp"
 aggregation:
-  seconds: 10
+  seconds: 1
 filter:
   - query:
       query_string:
-        query: "NOT(_exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
+        query: "(@timestamp >= 'now-1s') AND NOT (_exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
 
         ###query: "(@timestamp >= 'now-1s') AND (NOT _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND NOT _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
 alert:
