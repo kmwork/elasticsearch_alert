@@ -18,10 +18,10 @@ filter:
         ###query: "level.keyword : INFO"
         ### ok message#### query: "data.requestTransportInfoId : ef171ac4-d89d-4ed5-9bb0-bf0f57d5bb03"
         ######################query: "@timestamp gte now-1d/d AND @timestamp lte now/d"
-        query : "_exists_: @timestamp >= 'now-1s/s'"
-
-      ###           @timestamp >= "now-1s/s"
-      ### ok3 ### logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID\: 8e630dd0-5796-45e0-8d85-8a14c5d872dd*
+        ## query : "_exists_: @timestamp >= 'now-1s/s'"
+        ##query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api"
+        query: "@timestamp >=: 'now-1s'"
+### ok3 ### logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID\: 8e630dd0-5796-45e0-8d85-8a14c5d872dd*
       ### warn-ok3 ### logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID\: 8e630dd0-5796-45e0-8d85-8a14c5d872dd* AND @timestamp >= "now-1s/s"
 alert:
   - "telegram"
