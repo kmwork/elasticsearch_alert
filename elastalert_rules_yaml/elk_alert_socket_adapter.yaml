@@ -7,10 +7,10 @@ threshold: 1
 index: datana-smart-dev-logs-*
 num_events: 10
 timeframe:
-  minutes: 1
-#aggregation_key: "@timestamp"
-#aggregation:
-#  seconds: 2
+  seconds: 1
+aggregation_key: "@timestamp"
+aggregation:
+  seconds: 1
 filter:
   - query:
       query_string:
