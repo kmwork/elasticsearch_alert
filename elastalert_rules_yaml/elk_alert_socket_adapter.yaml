@@ -16,6 +16,15 @@ type: any
 timeframe:
   seconds: 2
 
+buffer_time:
+  minutes: 60
+
+alert_time_limit:
+  days: 1
+
+realert:
+  minutes: 10
+
 filter:
   - query:
       query_string:
