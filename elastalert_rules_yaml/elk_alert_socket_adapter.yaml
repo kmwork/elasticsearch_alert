@@ -1,21 +1,26 @@
 es_host: datana-logs.datana.ru
 es_port: 9200
+run_every:
+  minutes: 10
+
 name: Socket Adapter Of Datana Smart
-#cardinality: This rule matches when a the total number of unique values for a certain field within a time frame is higher or lower than a threshold.
+
 type: flatline
 threshold: 1
-##index: datana-smart-dev-logs-*
+####index: datana-smart-dev-logs-*
 index: datana-smart-test-logs-*
-#num_events: 10
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 10
+
 timeframe:
-  seconds: 10
+  hours: 10
 use_count_query: true
-query_key: "@timestamp"
-doc_type: "test_query"
-filter:
-  - query:
-      query_string:
-        query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
+doc_type: doc
+#filter:
+#  - query:
+#      query_string:
+        #### query: "@timestamp >= 'now-1s'"
+        ### query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
 
         ### query: "@timestamp >= 'now-1s' AND _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
         ###query: "(@timestamp >= 'now-1s') AND (NOT _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND NOT _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
@@ -32,5 +37,10 @@ telegram_bot_token: 1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
 telegram_room_id: "@DatanaReleaseEvent"
 
 alert_text: "from elastalert - {0}, {1}, {2}"
-alert_text_args: ["type", "username2", "timestamp"]
+alert_text_args: ["component", "message", "@timestamp"]
 alert_text_type: alert_text_only
+
+
+query_key: [logger_name, message]
+include: [logger_name, message]
+top_count_keys: [logger_name, message]
