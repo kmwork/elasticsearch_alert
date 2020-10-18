@@ -3,13 +3,15 @@ es_port: 9200
 name: Socket Adapter Of Datana Smart
 #cardinality: This rule matches when a the total number of unique values for a certain field within a time frame is higher or lower than a threshold.
 type: flatline
-cardinality_field: "@timestamp"
 threshold: 1
 ##index: datana-smart-dev-logs-*
 index: datana-smart-test-logs-*
 #num_events: 10
 timeframe:
   seconds: 10
+use_count_query: true
+query_key: "@timestamp"
+doc_type: "test_query"
 filter:
   - query:
       query_string:
