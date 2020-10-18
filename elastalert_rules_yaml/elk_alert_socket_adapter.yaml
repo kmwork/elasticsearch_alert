@@ -35,7 +35,7 @@ filter:
         ###query: "(@timestamp >= 'now-1s') AND (NOT _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND NOT _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
 alert:
   - "telegram"
-  -
+
 use_local_time: True
 
 ## телеграм для релизов датаны (для примера взято)
@@ -45,9 +45,9 @@ telegram_bot_token: 1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
 
 telegram_room_id: "@DatanaReleaseEvent"
 
-alert_text: "from elastalert - {0}, {1}, {2}"
-alert_text_args: ["component", "message", "@timestamp"]
-alert_text_type: alert_text_only
+alert_text: "from elastalert - {0}, {1}, {2}, {3}"
+alert_text_args: ["hostname", "component", "message", "@timestamp"]
+### alert_text_type: alert_text_only
 
 
 query_key: [logger_name, message]
