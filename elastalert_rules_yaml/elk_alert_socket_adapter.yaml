@@ -7,12 +7,9 @@ cardinality_field: "@timestamp"
 min_cardinality: 1
 ##index: datana-smart-dev-logs-*
 index: datana-smart-test-logs-*
-num_events: 10
+#num_events: 10
 timeframe:
-  seconds: 1
-aggregation_key: "@timestamp"
-aggregation:
-  seconds: 1
+  seconds: 10
 filter:
   - query:
       query_string:
