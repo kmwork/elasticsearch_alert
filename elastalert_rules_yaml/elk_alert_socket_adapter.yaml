@@ -5,8 +5,8 @@ run_every:
 
 name: Socket Adapter Of Datana Smart
 
-####index: datana-smart-dev-logs-*
-index: datana-smart-test-logs-*
+index: datana-smart-dev-logs-*
+####index: datana-smart-test-logs-*
 # A rule that matches if num_events number of events occur within a timeframe
 num_events: 10
 
@@ -20,12 +20,12 @@ use_count_query: True
 
 threshold: 2
 
-doc_type: "_doc"
+doc_type: _doc
 
-filter:
-  - query:
-      query_string:
-        query: "NOT @timestamp >= 'now-1s'"
+#filter:
+#  - query:
+#      query_string:
+#        query: "NOT _exist_ @timestamp"
         ##query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
 
         ### query: "@timestamp >= 'now-1s' AND _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
