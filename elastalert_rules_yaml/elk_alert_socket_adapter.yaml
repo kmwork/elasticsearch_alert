@@ -11,21 +11,15 @@ index: datana-smart-dev-logs-*
 num_events: 10
 
 ###################################
-type: flatline
+type: any
 
 timeframe:
   seconds: 2
-use_count_query: True
-
-
-threshold: 20000
-
-doc_type: _doc
 
 filter:
   - query:
       query_string:
-        query: "@timestamp >= 'now-1s'"
+        query: "NOT _exits_ @timestamp >= 'now-1s'"
         ##query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
 
         ### query: "@timestamp >= 'now-1s' AND _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
