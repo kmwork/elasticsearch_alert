@@ -17,16 +17,19 @@ use_count_query: true
 ################################################333333
 
 type: spike
-spike_height: 2
-spike_type: up
+spike_height: 1
+
+# spike_type``spike_type``: Either 'up', 'down' or 'both'. 'Up' meaning the rule will only match when the number of events is ``spike_height`` times
+#  higher. 'Down' meaning the reference number is ``spike_height`` higher than the current number. 'Both' will match either.
+spike_type: down
 threshold_ref: 1
 ##############################################33
 doc_type: doc
-#filter:
-#  - query:
-#      query_string:
-        #### query: "@timestamp >= 'now-1s'"
-        ### query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
+filter:
+  - query:
+      query_string:
+        ### query: "@timestamp >= 'now-1s'"
+        query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
 
         ### query: "@timestamp >= 'now-1s' AND _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
         ###query: "(@timestamp >= 'now-1s') AND (NOT _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND NOT _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
