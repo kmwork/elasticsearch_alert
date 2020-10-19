@@ -32,10 +32,6 @@ export RULE_INDEX=datana-smart-dev-logs-*
 export RULE_TELEGRAM_BOT_TOKEN=1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
 export RULE_TELEGRAM_ROOM_ID=@DatanaReleaseEvent
 
-#cat $CONFIG_FILE_TEMPLATE | envsubst >$CONFIG_FILE
-#cat $ENV_FILE_TEMPLATE | envsubst >$ENV_FILE
-
-
 TEMPLETE_FILES=$BIN_DIR/elastalert_rules_yaml/*.yaml
 for f in $TEMPLETE_FILES
 do
