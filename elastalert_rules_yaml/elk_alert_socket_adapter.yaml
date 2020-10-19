@@ -25,6 +25,7 @@ realert:
 filter:
   - query:
       query_string:
+        ### check json #### query: '[{"name":"ob1","port_num":0,"port_type":"network"}]'
         query: "NOT (@timestamp >= 'now-5s' AND logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
         ### count (timestamp ) < 1
 ###        query: "(NOT _exists_ @timestamp) OR NOT (logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
@@ -41,7 +42,7 @@ use_local_time: True
 
 telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
-telegram_room_id: ${RULE_TELEGRAM_ROOM_ID}
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
 alert_text: "from elastalert - {0}, {1}, {2}, {3}"
 alert_text_args: ["hostname", "component", "message", "@timestamp"]
