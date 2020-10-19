@@ -1,7 +1,7 @@
 #!/bin/sh -xe
 ### **********************************************
 ### ******** Проект Докер под Elastalert
-### (работает внтури докера)
+### (работает внутри докера)
 ### **********************************************
 ### текущий каталог
 WORK_DATANA_DIR=/opt/datana
@@ -18,3 +18,4 @@ else
   echo "[DATANA:SHELL] error, not exists file: CONFIG_FILE=$CONFIG_FILE"
   exit
 fi
+/bin/bash /opt/elastalert/run.sh

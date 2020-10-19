@@ -8,13 +8,11 @@ MAINTAINER Datana Ltd https://datana.ru
 
 ## копирование конфигов
 COPY /elastalert_rules_yaml/*.yaml /opt/datana/
-COPY ./dockerfile-insert.sh /opt/datana/
-CMD ["/opt/datana/dockerfile-insert.sh"]
+COPY run.sh /opt/datana/
 
 ENV TZ "UTC"
 ENV LANG=C.UTF-8
 
-CMD ["/opt/elastalert/run.sh"]
 
 WORKDIR /opt/elastalert
-ENTRYPOINT ["/opt/elastalert/run.sh"]
+ENTRYPOINT ["/opt/datana/run.sh"]
