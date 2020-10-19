@@ -3,8 +3,7 @@ run_every:
 
 name: Socket Adapter Of Datana Smart
 
-index: datana-smart-dev-logs-*
-####index: datana-smart-test-logs-*
+index: ${RULE_INDEX} datana-smart-dev-logs-*
 # A rule that matches if num_events number of events occur within a timeframe
 num_events: 1
 
@@ -40,9 +39,9 @@ use_local_time: True
 ## телеграм для релизов датаны (для примера взято)
 ##      def final constTelegramReleaseURL = "https://api.telegram.org/bot1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo/sendMessage?chat_id=-1001451379215&parse_mode=HTML"
 
-telegram_bot_token: 1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
-telegram_room_id: "@DatanaReleaseEvent"
+telegram_room_id: ${RULE_TELEGRAM_ROOM_ID}
 
 alert_text: "from elastalert - {0}, {1}, {2}, {3}"
 alert_text_args: ["hostname", "component", "message", "@timestamp"]
