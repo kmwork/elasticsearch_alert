@@ -3,7 +3,7 @@ run_every:
 
 name: Socket Adapter Of Datana Smart
 
-index: ${RULE_INDEX} datana-smart-dev-logs-*
+index: ${RULE_INDEX}
 # A rule that matches if num_events number of events occur within a timeframe
 num_events: 1
 
