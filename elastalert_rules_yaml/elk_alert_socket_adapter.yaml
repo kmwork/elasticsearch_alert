@@ -14,7 +14,7 @@ num_events: 1
 type: any
 
 timeframe:
-  seconds: 2
+  seconds: 5
 
 buffer_time:
   minutes: 60
@@ -28,7 +28,8 @@ realert:
 filter:
   - query:
       query_string:
-        query: "NOT (@timestamp >= 'now-1s' AND logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
+        query: "NOT (@timestamp >= 'now-5s' AND logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
+        ### count (timestamp ) < 1
 ###        query: "(NOT _exists_ @timestamp) OR NOT (logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*)"
 
         ### query: "@timestamp >= 'now-1s' AND _exists_ logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND _exists message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
