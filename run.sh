@@ -6,16 +6,20 @@
 ### текущий каталог
 WORK_DATANA_DIR=/opt/datana
 
-### путь на наши конфиги
-CONFIG_FILE_TEMPLATE=$WORK_DATANA_DIR/elastalert_config_with_params.yaml
+## временнвая папка
+TEMPLETE_DIR=/opt/datana_templates
+# Подготовка конфгов
+TEMPLETE_FILES=$TEMPLETE_DIR/*.yaml
+for f in $TEMPLETE_FILES
+do
+  newNameFile="$(basename -- $f)"
+  echo "Processing $f file to $newNameFile"
+  # take action on each file. $f store current file name
+  cat $f | envsubst >$WORK_DATANA_DIR/$newNameFile
+done
+CONFIG_FILE_DATANA=$WORK_DATANA_DIR/elastalert_config_with_params.yaml
 CONFIG_FILE=/opt/config/elastalert_config.yaml
 
-cat $CONFIG_FILE_TEMPLATE | envsubst >$CONFIG_FILE
+cp -p $CONFIG_FILE_DATANA $CONFIG_FILE
 
-if test -f "$CONFIG_FILE"; then
-  echo "[DATANA:SHELL] ok, exists file: CONFIG_FILE=$CONFIG_FILE"
-else
-  echo "[DATANA:SHELL] error, not exists file: CONFIG_FILE=$CONFIG_FILE"
-  exit
-fi
-/bin/bash /opt/elastalert/run.sh
+bash /opt/elastalert/run.sh

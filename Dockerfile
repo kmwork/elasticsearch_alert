@@ -7,7 +7,8 @@ MAINTAINER Datana Ltd https://datana.ru
 
 
 ## копирование конфигов
-COPY /elastalert_rules_yaml/*.yaml /opt/datana/
+RUN apk add gettext && apk add bash
+COPY /elastalert_rules_yaml/*.yaml /opt/datana_templates/
 COPY run.sh /opt/datana/
 
 ENV TZ "UTC"

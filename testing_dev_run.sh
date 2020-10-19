@@ -45,5 +45,7 @@ done
 echo "[DATANA:SHELL] ================================ Run dockerfile ================================"
 docker build --tag $DS_DOCKER_NAME $BIN_DIR
 
+
+ENV_FILE=$BIN_DIR/testing_dev.env
 echo "[DATANA:SHELL] ================================ Build dockerfile ================================"
-###docker run -d --env-file=$ENV_FILE $DS_DOCKER_NAME
+docker run -d --env-file=$ENV_FILE $DS_DOCKER_NAME
