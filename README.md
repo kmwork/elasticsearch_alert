@@ -42,4 +42,13 @@ docker build .
 ```
 docker run --env-file=./env_folder/env_dev_stand.env -p 3030:3030 -it 1ee7aaa809e0
 ```
-где 1ee7aaa809e0 -- хеш-код от первой команды `docker build .`
+где 1ee7aaa809e0 -- хеш-код от первой команды `docker build 
+
+## нужно задать переменные окружения
+```
+export ES_HOST=datana-logs.datana.ru
+export ES_PORT=9200
+export ES_USERNAME=elastic
+export ES_PASSWORD=changeme
+export ES_USE_SSL=False
+```

@@ -16,9 +16,6 @@ stages:
 
 before_script:
   - echo "$CI_BUILD_NAME, $CI_BUILD_REF_NAME $CI_BUILD_STAGE" # debug
-  - echo "[DATANA:START] prepare files by calling for_gitlib-ci.sh"
-  - sh for_gitlib-ci.sh
-  - echo "[DATANA:END] prepare files -- ok!!!"
 deploy:
   stage: deploy
   script:
