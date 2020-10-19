@@ -33,8 +33,8 @@ es_password: ${ES_PASSWORD}
 # The index on es_host which is used for metadata storage
 # This can be a unmapped index, but it is recommended that you run
 #  to set a mapping
-writeback_index: dev_index_alert
-writeback_alias: dev_alerts
+writeback_index: ${ES_WRITEBACK_INDEX}
+writeback_alias: ${ES_WRITEBACK_ALIAS}
 #writeback_index: elastalert_status
 #writeback_alias: elastalert_alerts
 

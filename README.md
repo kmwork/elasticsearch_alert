@@ -51,4 +51,6 @@ export ES_PORT=9200
 export ES_USERNAME=elastic
 export ES_PASSWORD=changeme
 export ES_USE_SSL=False
+export ES_WRITEBACK_INDEX=dev_index_alert
+export ES_WRITEBACK_ALIAS=dev_alerts
 ```
