@@ -8,7 +8,7 @@ MAINTAINER Datana Ltd https://datana.ru
 
 ## копирование конфигов
 COPY /temp_work/elastalert_config.yaml /opt/config/elastalert_config.yaml
-COPY /elastalert_rules_yaml/elk_alert_socket_adapter.yaml /datana_alert_rules/
+COPY /elastalert_rules_yaml/elk*.yaml /datana_alert_rules/
 
 ENV TZ "UTC"
 ENV LANG=C.UTF-8

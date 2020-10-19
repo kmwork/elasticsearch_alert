@@ -19,11 +19,11 @@ ENV_FILE="$WORK_TEMP_DIR/.env"
 CONFIG_FILE_TEMPLATE=$BIN_DIR/elastalert_rules_yaml/elastalert_config_with_params.yaml
 CONFIG_FILE=$WORK_TEMP_DIR/elastalert_config.yaml
 
-export ES_HOST=datana-logs.datana.ru
-export ES_PORT=9200
-export ES_USERNAME=elastic
-export ES_PASSWORD=changeme
-export ES_USE_SSL=False
+#export ES_HOST=datana-logs.datana.ru
+#export ES_PORT=9200
+#export ES_USERNAME=elastic
+#export ES_PASSWORD=<скрыт паоль>
+#export ES_USE_SSL=False
 cat $CONFIG_FILE_TEMPLATE | envsubst >$CONFIG_FILE
 cat $ENV_FILE_TEMPLATE | envsubst >$ENV_FILE
 
