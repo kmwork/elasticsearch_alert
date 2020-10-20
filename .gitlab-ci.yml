@@ -1,0 +1,43 @@
+image: docker:git
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  IMAGE_VERSION: 0.0.1
+  IMAGE_NAME: $DOCKER_REGISTRY_HOST/datana_smart_alerts
+
+stages:
+  - deploy
+  - test
+
+before_script:
+  - echo "$CI_BUILD_NAME, $CI_BUILD_REF_NAME $CI_BUILD_STAGE" # debug
+deploy:
+  stage: deploy
+  script:
+    - docker info
+    - echo "-t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest "
+    - echo "$DOCKER_REGISTRY_PASS" | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY_HOST
+    - docker build -t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest .
+    - docker push $IMAGE_NAME:$IMAGE_VERSION
+    - docker push $IMAGE_NAME:latest
+    - docker logout $DOCKER_REGISTRY_HOST
+  only:
+    - dev
+    - master
+
+test:
+  stage: test
+  script:
+    - docker info
+    - echo "-t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest "
+    - docker build -t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest .
+  only:
+    - /^feature\/.*$/
+
+after_script:
+  - echo "End CI"

@@ -1,0 +1,11 @@
+*.iml
+.idea/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# Logs
+logs
+*.log
+/temp_work/
+/testing_dev.env

@@ -1,0 +1,97 @@
+# This is the folder that contains the rule yaml files
+# Any .yaml file will be loaded as a rule
+rules_folder: datana_alert_rules
+
+# How often ElastAlert will query Elasticsearch
+# The unit can be anything from weeks to seconds
+run_every:
+  minutes: 30
+
+# ElastAlert will buffer results from the most recent
+# period of time, in case some log sources are not in real time
+buffer_time:
+  minutes: 15
+
+# The Elasticsearch hostname for metadata writeback
+# Note that every rule can have its own Elasticsearch host
+es_host: ${ES_HOST}
+
+# The Elasticsearch port
+es_port: ${ES_PORT}
+
+# GET request with body is the default option for Elasticsearch.
+# If it fails for some reason, you can pass 'GET', 'POST' or 'source'.
+# See http://elasticsearch-py.readthedocs.io/en/master/connection.html?highlight=send_get_body_as#transport
+# for details
+#es_send_get_body_as: GET
+
+# Option basic-auth username and password for Elasticsearch
+es_username: ${ES_USERNAME}
+es_password: ${ES_PASSWORD}
+
+
+# The index on es_host which is used for metadata storage
+# This can be a unmapped index, but it is recommended that you run
+#  to set a mapping
+writeback_index: ${ES_WRITEBACK_INDEX}
+writeback_alias: ${ES_WRITEBACK_ALIAS}
+#writeback_index: elastalert_status
+#writeback_alias: elastalert_alerts
+
+# If an alert fails for some reason, ElastAlert will retry
+# sending the alert until this time period has elapsed
+alert_time_limit:
+  days: 2
+
+use_ssl: ${ES_USE_SSL}
+###es_url_prefix: dev
+
+# Custom logging configuration
+# If you want to setup your own logging configuration to log into
+# files as well or to Logstash and/or modify log levels, use
+# the configuration below and adjust to your needs.
+# Note: if you run ElastAlert with --verbose/--debug, the log level of
+# the "elastalert" logger is changed to INFO, if not already INFO/DEBUG.
+logging:
+  version: 1
+  incremental: false
+  disable_existing_loggers: false
+  formatters:
+    logline:
+      format: '%(asctime)s %(levelname)+8s %(name)+20s %(message)s'
+
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: logline
+        level: DEBUG
+        stream: ext://sys.stderr
+
+      file:
+        class: logging.FileHandler
+        formatter: logline
+        level: DEBUG
+        filename: elastalert.log
+
+    loggers:
+      elastalert:
+        level: DEBUG
+        handlers: []
+        propagate: true
+
+      elasticsearch:
+        level: DEBUG
+        handlers: []
+        propagate: true
+
+      elasticsearch.trace:
+        level: DEBUG
+        handlers: []
+        propagate: true
+
+      '':  # root logger
+        level: DEBUG
+        handlers:
+          - console
+          - file
+        propagate: false
