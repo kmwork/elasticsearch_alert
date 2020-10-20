@@ -36,52 +36,30 @@ num_events: 1
 type: metric_aggregation
 
 buffer_time:
-  seconds: 60
-
-timeframe:
   hours: 1
 
-metric_agg_key: level
-metric_agg_type: value_count
-
+metric_agg_key: system.cpu.user.pct
+metric_agg_type: avg
+query_key: level
 doc_type: _doc
 
+bucket_interval:
+  minutes: 5
+
+sync_bucket_interval: true
+#allow_buffer_time_overlap: true
+#use_run_every_query_size: true
+
+min_threshold: 0.1
 max_threshold: 100
-min_threshold: 100
-min_doc_count: 1
 
-alert_time_limit:
-  days: 1
+filter:
+- term:
+    level: DEBUG
+    ## field: ["value1", "value2"] # value1 OR value2
 
-realert:
-  minutes: 10
-
-#filter:
-#  - query:
-#      query_string:
-#        query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
+# (Required)
+# The alert is use when a match is found
 alert:
-  - "telegram"
+- "debug"
 
-use_local_time: True
-
-
-telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
-
-telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
-
-alert_text: "from elastalert - {0}, {1}, {2}, {3}"
-alert_text_args: ["hostname", "component", "message", "@timestamp"]
-### alert_text_type: alert_text_only
-
-
-query_key: [logger_name, message]
-include: [logger_name, message]
-top_count_keys: [logger_name, message]
-
-
-#smtp_host: 'mysmtpserverfqdn'
-#smtp_port: 587
-#smtp_ssl: true
-#from_addr: 'notifications@mydomain.com'
-#smtp_auth_file: '/opt/elastalert/smtp_auth_file'
