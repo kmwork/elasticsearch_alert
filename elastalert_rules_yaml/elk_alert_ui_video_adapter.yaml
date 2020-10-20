@@ -30,13 +30,13 @@ name: Socket Adapter Of Datana Smart
 index: datana-smart-dev-logs-*
 ####index: datana-smart-test-logs-*
 # A rule that matches if num_events number of events occur within a timeframe
-num_events: 1
+num_events: 10
 
 ###################################
 type: metric_aggregation
 
 buffer_time:
-  hours: 1
+  hours: 10
 
 metric_agg_key: system.cpu.user.pct
 metric_agg_type: avg
@@ -50,7 +50,7 @@ sync_bucket_interval: true
 #allow_buffer_time_overlap: true
 #use_run_every_query_size: true
 
-min_threshold: 0.1
+min_threshold: 10
 max_threshold: 100
 
 filter:
