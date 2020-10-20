@@ -8,3 +8,4 @@
 logs
 *.log
 /temp_work/
+/testing_dev.env
