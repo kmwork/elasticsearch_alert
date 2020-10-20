@@ -41,7 +41,7 @@ buffer_time:
 timeframe:
   seconds: 5
 
-metric_agg_key: "@timestamp"
+metric_agg_key: level
 metric_agg_type: value_count
 
 doc_type: _doc
@@ -56,10 +56,10 @@ alert_time_limit:
 realert:
   minutes: 10
 
-filter:
-  - query:
-      query_string:
-        query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
+#filter:
+#  - query:
+#      query_string:
+#        query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
 alert:
   - "telegram"
 
