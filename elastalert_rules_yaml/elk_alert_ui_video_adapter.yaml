@@ -1,0 +1,88 @@
+## https://elastalert.readthedocs.io/en/latest/ruletypes.html#metric-aggregation
+
+run_every:
+  minutes: 10
+
+
+#===========================================================
+#metric_aggregation: This rule matches when the value of a metric within the calculation window is higher or lower than a threshold. By default this is buffer_time.
+#
+#This rule requires:
+#
+#metric_agg_key: This is the name of the field over which the metric value will be calculated. The underlying type of this field must be supported by the specified aggregation type.
+#
+#metric_agg_type: The type of metric aggregation to perform on the metric_agg_key field. This must be one of ‘min’, ‘max’, ‘avg’, ‘sum’, ‘cardinality’, ‘value_count’.
+#
+#doc_type: Specify the _type of document to search for.
+#
+#This rule also requires at least one of the two following options:
+#
+#max_threshold: If the calculated metric value is greater than this number, an alert will be triggered. This threshold is exclusive.
+#
+#min_threshold: If the calculated metric value is less than this number, an alert will be triggered. This threshold is exclusive.
+
+
+#===========================================================
+
+name: Socket Adapter Of Datana Smart
+
+####index: ${RULE_INDEX}
+index: datana-smart-dev-logs-*
+####index: datana-smart-test-logs-*
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 1
+
+###################################
+type: metric_aggregation
+
+buffer_time:
+  seconds: 5
+
+timeframe:
+  seconds: 5
+
+metric_agg_key: "@timestamp"
+metric_agg_type: value_count
+
+doc_type: _doc
+
+max_threshold: 100
+min_threshold: 0
+
+alert_time_limit:
+  days: 1
+
+realert:
+  minutes: 10
+
+filter:
+  - query:
+      query_string:
+        query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
+alert:
+  - "telegram"
+
+use_local_time: True
+
+## телеграм для релизов датаны (для примера взято)
+##      def final constTelegramReleaseURL = "https://api.telegram.org/bot1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo/sendMessage?chat_id=-1001451379215&parse_mode=HTML"
+
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
+
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
+
+alert_text: "from elastalert - {0}, {1}, {2}, {3}"
+alert_text_args: ["hostname", "component", "message", "@timestamp"]
+### alert_text_type: alert_text_only
+
+
+query_key: [logger_name, message]
+include: [logger_name, message]
+top_count_keys: [logger_name, message]
+
+
+#smtp_host: 'mysmtpserverfqdn'
+#smtp_port: 587
+#smtp_ssl: true
+#from_addr: 'notifications@mydomain.com'
+#smtp_auth_file: '/opt/elastalert/smtp_auth_file'
