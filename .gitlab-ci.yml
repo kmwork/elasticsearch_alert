@@ -1,5 +1,4 @@
 image: docker:git
-#image: registry.datana.ru/alpine-java-docker
 
 services:
   - docker:dind
@@ -13,6 +12,7 @@ variables:
 
 stages:
   - deploy
+  - test
 
 before_script:
   - echo "$CI_BUILD_NAME, $CI_BUILD_REF_NAME $CI_BUILD_STAGE" # debug
@@ -21,7 +21,6 @@ deploy:
   script:
     - docker info
     - echo "-t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest "
-    #        - docker login -u "$DOCKER_REGISTRY_USER" -p "$DOCKER_REGISTRY_PASS" "$DOCKER_REGISTRY_HOST"
     - echo "$DOCKER_REGISTRY_PASS" | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY_HOST
     - docker build -t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest .
     - docker push $IMAGE_NAME:$IMAGE_VERSION
@@ -30,6 +29,15 @@ deploy:
   only:
     - dev
     - master
+
+test:
+  stage: test
+  script:
+    - docker info
+    - echo "-t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest "
+    - docker build -t $IMAGE_NAME:$IMAGE_VERSION -t $IMAGE_NAME:latest .
+  only:
+    - /^feature\/.*$/
 
 after_script:
   - echo "End CI"
