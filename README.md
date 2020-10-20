@@ -49,11 +49,11 @@ docker run --env-file=./env_folder/env_dev_stand.env -p 3030:3030 -it 1ee7aaa809
 export ES_HOST=datana-logs.datana.ru
 export ES_PORT=9200
 export ES_USERNAME=elastic
-export ES_PASSWORD=changeme
+export ES_PASSWORD=<изменено значение>
 export ES_USE_SSL=False
 export ES_WRITEBACK_INDEX=dev_index_alert
 export ES_WRITEBACK_ALIAS=dev_alerts
 export RULE_INDEX=datana-smart-dev-logs-*
-export RULE_TELEGRAM_BOT_TOKEN=1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
-export RULE_TELEGRAM_ROOM_ID=@DatanaReleaseEvent
+export RULE_TELEGRAM_BOT_TOKEN=<число:символы>
+export RULE_TELEGRAM_ROOM_ID=<изменено значение с начиная с @>
 ```
