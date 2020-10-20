@@ -36,10 +36,10 @@ num_events: 1
 type: metric_aggregation
 
 buffer_time:
-  seconds: 5
+  seconds: 60
 
 timeframe:
-  seconds: 5
+  hours: 1
 
 metric_agg_key: level
 metric_agg_type: value_count
