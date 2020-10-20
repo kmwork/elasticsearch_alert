@@ -47,7 +47,8 @@ metric_agg_type: value_count
 doc_type: _doc
 
 max_threshold: 100
-min_threshold: 0
+min_threshold: 100
+min_doc_count: 1
 
 alert_time_limit:
   days: 1
@@ -64,8 +65,6 @@ alert:
 
 use_local_time: True
 
-## телеграм для релизов датаны (для примера взято)
-##      def final constTelegramReleaseURL = "https://api.telegram.org/bot1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo/sendMessage?chat_id=-1001451379215&parse_mode=HTML"
 
 telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 

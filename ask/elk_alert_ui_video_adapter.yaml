@@ -1,0 +1,59 @@
+## https://elastalert.readthedocs.io/en/latest/ruletypes.html#metric-aggregation
+
+run_every:
+  minutes: 10
+
+
+name: Socket Adapter Of Datana Smart
+
+index: datana-smart-dev-logs-*
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 1
+
+###################################
+type: metric_aggregation
+
+buffer_time:
+  seconds: 5
+
+timeframe:
+  seconds: 5
+
+metric_agg_key: "@timestamp"
+metric_agg_type: value_count
+
+doc_type: _doc
+
+max_threshold: 100
+min_threshold: 100
+min_doc_count: 1
+
+alert_time_limit:
+  days: 1
+
+realert:
+  minutes: 10
+
+filter:
+  - query:
+      query_string:
+        query: "logger_name: ru.datana.integrationadapter.socket.integration.connector.S7Api AND message: *Получена data из S7Connector и создан МultiSensorModel объект с sensorTemperatureUUID*"
+alert:
+  - "telegram"
+
+use_local_time: True
+
+
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
+
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
+
+alert_text: "from elastalert - {0}, {1}, {2}, {3}"
+alert_text_args: ["hostname", "component", "message", "@timestamp"]
+### alert_text_type: alert_text_only
+
+
+query_key: [logger_name, message]
+include: [logger_name, message]
+top_count_keys: [logger_name, message]
+
