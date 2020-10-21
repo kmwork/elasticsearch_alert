@@ -6,7 +6,8 @@
 elastalert-test-rule  elk_alert_ui_video_adapter.yaml --config ./../temp_work/elastalert_config.yaml
 ```
 лог <this project>/ask/console.log
-
+где elastalert_config.yaml -- то же что и elastalert_rules_yaml/elastalert_config_with_params.yaml но с постановкой 
+параметров 
 
 ## Отладка правил
 ```

@@ -1,0 +1,72 @@
+curl -XGET 'http://localhost:9200/?pretty' -d ''
+curl -XGET 'http://localhost:9200/?pretty' -d ''
+curl -XGET 'http://localhost:9200/?pretty' -d ''
+curl -XGET 'http://localhost:9200/?pretty' -d ''
+curl -H 'Content-Type: application/json' -XGET 'http://localhost:9200/dev_index_alert_status/_search?pretty&_source_includes=endtime%2Crule_name&size=1' -d '{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": {
+          "rule_name": "Socket Adapter Of Datana Smart"
+        }
+      }
+    }
+  },
+  "sort": {
+    "@timestamp": {
+      "order": "desc"
+    }
+  }
+}'
+curl -H 'Content-Type: application/json' -XGET 'http://localhost:9200/dev_index_alert_status/_search?pretty&_source_includes=endtime%2Crule_name&size=1' -d '{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": {
+          "rule_name": "Socket Adapter Of Datana Smart"
+        }
+      }
+    }
+  },
+  "sort": {
+    "@timestamp": {
+      "order": "desc"
+    }
+  }
+}'
+curl -XGET 'http://localhost:9200/?pretty' -d ''
+curl -XGET 'http://localhost:9200/?pretty' -d ''
+curl -XGET 'http://localhost:9200/?pretty' -d ''
+curl -XGET 'http://localhost:9200/?pretty' -d ''
+curl -H 'Content-Type: application/json' -XGET 'http://localhost:9200/dev_index_alert_status/_search?pretty&_source_includes=endtime%2Crule_name&size=1' -d '{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": {
+          "rule_name": "Socket Adapter Of Datana Smart"
+        }
+      }
+    }
+  },
+  "sort": {
+    "@timestamp": {
+      "order": "desc"
+    }
+  }
+}'
+curl -H 'Content-Type: application/json' -XGET 'http://localhost:9200/dev_index_alert_status/_search?pretty&_source_includes=endtime%2Crule_name&size=1' -d '{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": {
+          "rule_name": "Socket Adapter Of Datana Smart"
+        }
+      }
+    }
+  },
+  "sort": {
+    "@timestamp": {
+      "order": "desc"
+    }
+  }
+}'
