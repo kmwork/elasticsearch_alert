@@ -44,7 +44,7 @@ query_key: level
 doc_type: _doc
 
 bucket_interval:
-  minutes: 5
+  minutes: 1
 
 sync_bucket_interval: true
 #allow_buffer_time_overlap: true
