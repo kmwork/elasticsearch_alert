@@ -38,8 +38,8 @@ type: metric_aggregation
 buffer_time:
   hours: 10
 
-metric_agg_key: system.cpu.user.pct
-metric_agg_type: avg
+metric_agg_key: level
+metric_agg_type: value_count
 query_key: level
 doc_type: _doc
 
@@ -50,8 +50,8 @@ sync_bucket_interval: true
 #allow_buffer_time_overlap: true
 #use_run_every_query_size: true
 
-min_threshold: 10
-max_threshold: 100
+min_threshold: 10000
+max_threshold: 100000
 
 filter:
 - term:
