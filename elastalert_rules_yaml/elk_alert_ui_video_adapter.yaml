@@ -1,7 +1,7 @@
 ## https://elastalert.readthedocs.io/en/latest/ruletypes.html#metric-aggregation
 
-run_every:
-  minutes: 10
+#run_every:
+#  minutes: 10
 
 
 #===========================================================

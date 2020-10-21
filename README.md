@@ -57,3 +57,8 @@ export RULE_INDEX=datana-smart-dev-logs-*
 export RULE_TELEGRAM_BOT_TOKEN=<число:символы>
 export RULE_TELEGRAM_ROOM_ID=<изменено значение с начиная с @>
 ```
+
+## Отладка правил
+```
+python3 -m elastalert.elastalert --config ./../temp_work/elastalert_config.yaml --rule elk_alert_ui_video_adapter.yaml --verbose --es_debug_trace alert.log
+```
