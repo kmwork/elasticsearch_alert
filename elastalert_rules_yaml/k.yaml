@@ -1,0 +1,47 @@
+run_every:
+  minutes: 10
+
+name: Socket Adapter Of Datana Smart
+
+index: datana-smart-dev-logs-*
+####index: datana-smart-test-logs-*
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 10
+
+###################################
+type: metric_aggregation
+
+buffer_time:
+  hours: 10
+
+metric_agg_key: level
+metric_agg_type: value_count
+query_key: level
+doc_type: _doc
+
+bucket_interval:
+  minutes: 1
+
+sync_bucket_interval: true
+#allow_buffer_time_overlap: true
+#use_run_every_query_size: true
+
+min_threshold: 10000
+max_threshold: 100000
+
+
+writeback_index: dev_index_alert
+filter:
+  - query:
+      query_string:
+        query: "(@timestamp <=now+1h)"
+#filter:
+#- term:
+#    level: DEBUG
+    ## field: ["value1", "value2"] # value1 OR value2
+
+# (Required)
+# The alert is use when a match is found
+alert:
+- "debug"
+
