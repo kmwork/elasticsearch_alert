@@ -46,6 +46,10 @@ doc_type: _doc
 bucket_interval:
   minutes: 1
 
+# https://github.com/Yelp/elastalert/issues/1010
+timestamp_field: "@timestamp"
+timestamp_type: unix_ms
+
 sync_bucket_interval: true
 #allow_buffer_time_overlap: true
 #use_run_every_query_size: true
