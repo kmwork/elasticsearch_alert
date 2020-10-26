@@ -20,6 +20,6 @@ done
 CONFIG_FILE_DATANA=$WORK_DATANA_DIR/elastalert_config_with_params.yaml
 CONFIG_FILE=/opt/config/elastalert_config.yaml
 
-cp -p $CONFIG_FILE_DATANA $CONFIG_FILE
+mv -f $CONFIG_FILE_DATANA $CONFIG_FILE
 
 bash /opt/elastalert/run.sh
