@@ -16,7 +16,10 @@ elastalert-test-rule elk_alert_socket_adapter.yaml --alert --days=1 --config ./.
 ```
 ### в докере
 ```
-elastalert-test-rule /datana/k.yaml --config /opt/config/elastalert_config.yaml
+elastalert-test-rule /opt/datana/elk_alert_new_video_adapter.yaml --config /opt/config/elastalert_config.yaml
+
+elastalert --verbose --config /opt/config/elastalert_config.yaml --start=NOW --rule /opt/datana/elk_alert_new_video_adapter.yaml --es_debug_trace alert.log
+/opt/datana/elk_alert_new_video_adapter.yaml --config /opt/config/elastalert_config.yaml
 ```
  
 ### докер переменные окружения для dev стенд

@@ -39,7 +39,7 @@ sync_bucket_interval: true
 #use_run_every_query_size: true
 
 min_threshold: 30
-max_threshold: 100000
+max_threshold: 10000000
 
 
 ## writeback_index: dev_index_alert
@@ -58,8 +58,9 @@ telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
 telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
-alert_text: "from elastalert - {0}, {1}, {2}, {3}"
-alert_text_args: [ "hostname", "component", "message", "@timestamp" ]
+alert_text: "from elastalert - {0}"
+alert_text_args: [ "@timestamp" ]
+##alert_text_args: [ "hostname", "component", "message", "@timestamp" ]
 alert_text_type: alert_text_only
 
 
