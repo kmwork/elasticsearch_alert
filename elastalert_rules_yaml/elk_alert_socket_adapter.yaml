@@ -16,6 +16,10 @@ timeframe:
 buffer_time:
   minutes: 60
 
+# https://github.com/Yelp/elastalert/issues/1010
+timestamp_field: "@timestamp"
+timestamp_type: unix_ms
+
 alert_time_limit:
   days: 1
 

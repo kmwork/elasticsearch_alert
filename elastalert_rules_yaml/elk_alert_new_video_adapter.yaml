@@ -1,0 +1,65 @@
+name: New Socket Adapter Of Datana Smart from 2020-10-23
+
+run_every:
+  minutes: 10
+
+realert:
+  hours: 1
+
+index: ${RULE_INDEX}
+####index: datana-smart-test-logs-*
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 1
+
+###################################
+type: metric_aggregation
+
+timeframe:
+  seconds: 60
+
+buffer_time:
+  seconds: 60
+
+metric_agg_key: "data.model.sensors.status"
+#metric_agg_script:
+
+# https://github.com/Yelp/elastalert/issues/1010
+timestamp_field: "@timestamp"
+timestamp_type: unix_ms
+
+metric_agg_type: "sum"
+query_key: "@timestamp"
+doc_type: _doc
+
+bucket_interval:
+  seconds: 10
+
+sync_bucket_interval: true
+#allow_buffer_time_overlap: true
+#use_run_every_query_size: true
+
+min_threshold: 30
+max_threshold: 100000
+
+
+## writeback_index: dev_index_alert
+filter:
+  - query:
+      query_string:
+        query: "data.model.sensors.status = 1"
+        #query: "(@timestamp > now-2000s)"
+
+alert:
+  - "telegram"
+
+use_local_time: True
+
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
+
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
+
+alert_text: "from elastalert - {0}, {1}, {2}, {3}"
+alert_text_args: [ "hostname", "component", "message", "@timestamp" ]
+alert_text_type: alert_text_only
+
+

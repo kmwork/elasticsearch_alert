@@ -16,7 +16,7 @@ elastalert-test-rule elk_alert_socket_adapter.yaml --alert --days=1 --config ./.
 ```
 ### в докере
 ```
-elastalert-test-rule /datana_alert_rules/elk_alert_socket_adapter.yaml --config /opt/config/elastalert_config.yaml
+elastalert-test-rule /datana/k.yaml --config /opt/config/elastalert_config.yaml
 ```
  
 ### докер переменные окружения для dev стенд
@@ -56,4 +56,11 @@ export ES_WRITEBACK_ALIAS=dev_alerts
 export RULE_INDEX=datana-smart-dev-logs-*
 export RULE_TELEGRAM_BOT_TOKEN=<число:символы>
 export RULE_TELEGRAM_ROOM_ID=<изменено значение с начиная с @>
+```
+
+## Отладка правил
+```
+elastalert --config ./../temp_work/elastalert_config.yaml --rule elk_alert_ui_video_adapter.yaml --verbose --es_debug_trace ./../ask/alert.log
+
+elastalert  --config /opt/config/elastalert_config.yaml --rule k.yaml --verbose --es_debug_trace alert.log
 ```

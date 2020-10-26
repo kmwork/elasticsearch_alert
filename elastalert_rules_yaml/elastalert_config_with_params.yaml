@@ -29,6 +29,8 @@ es_port: ${ES_PORT}
 es_username: ${ES_USERNAME}
 es_password: ${ES_PASSWORD}
 
+es_debug: true
+
 
 # The index on es_host which is used for metadata storage
 # This can be a unmapped index, but it is recommended that you run
