@@ -6,8 +6,7 @@ run_every:
 realert:
   minutes: 10
 
-index: datana-smart-dev-logs-*
-####index: datana-smart-test-logs-*
+index: ${RULE_INDEX}
 # A rule that matches if num_events number of events occur within a timeframe
 num_events: 1
 
@@ -28,9 +27,7 @@ timestamp_field: "@timestamp"
 timestamp_type: unix_ms
 
 metric_agg_type: "value_count"
-####query_key: "@timestamp"
 query_key: component.keyword
-#####query_key: "data.transportMessage.content.sensors.status"
 doc_type: _doc
 
 bucket_interval:
@@ -49,25 +46,19 @@ filter:
   - query:
       query_string:
         query: "data.transportMessage.content.sensors.status: 0"
-#        query: "data.transportMessage.content.sensors.status: 0 OR data.transportMessage.content.sensors.status: 1"
-        #query: "(@timestamp > now-2000s)"
+
 
 alert:
   - "telegram"
 
 use_local_time: True
 
-## телеграм для релизов датаны (для примера взято)
-##      def final constTelegramReleaseURL = "https://api.telegram.org/bot1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo/sendMessage?chat_id=-1001451379215&parse_mode=HTML"
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
-telegram_bot_token: 1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
-
-telegram_room_id: "@DatanaReleaseEvent"
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
 alert_text: "алерт сработал. Server is UP"
 alert_text_args: []
-#alert_text: "from elastalert - {0}, {1}, {2}, {3}"
-#alert_text_args: [ "hostname", "component", "message", "@timestamp" ]
 alert_text_type: alert_text_only
 
 
