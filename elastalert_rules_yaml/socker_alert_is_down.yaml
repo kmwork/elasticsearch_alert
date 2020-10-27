@@ -37,7 +37,7 @@ sync_bucket_interval: true
 #allow_buffer_time_overlap: true
 #use_run_every_query_size: true
 
-min_threshold: 1000
+min_threshold: 1
 max_threshold: 10000000
 
 
