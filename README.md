@@ -5,33 +5,21 @@
 ## Состав:
 ```
 + elastalert_rules_yaml -- папка YAML файлов
-++ elastalert_config.yaml -- конфиг для запуска скрипов (конфигов других по alert)
-++ elk_alert_socket_adapter.yaml -- проба пера для Socker Адаптер по alert
-```
+elastalert_config_with_params.yaml -- конфиг для запуска скрипов (конфигов других по alert)
+socker_alert_is_down.yaml -- алерт на случае если упал сервис сокет-адаптер
+socket_alert_is_up.yaml  -- алерт на случае если поднялся сервис сокет-адаптер
 
 ## как запускать на машине логов без докера
 ### как пример: 
 ```
 elastalert-test-rule elk_alert_socket_adapter.yaml --alert --days=1 --config ./../temp_work/elastalert_config.yaml 
 ```
-### в докере
+### в докере (само должно запускаться, но на всякий случай ниже команды)
 ```
-elastalert-test-rule /datana/k.yaml --config /opt/config/elastalert_config.yaml
+elastalert-test-rule /opt/datana/elk_alert_new_video_adapter.yaml --config /opt/config/elastalert_config.yaml
+
+elastalert --verbose --config /opt/config/elastalert_config.yaml --start=NOW --rule /opt/datana/socker_alert_is_down.yaml --es_debug_trace alert.log
 ```
- 
-### докер переменные окружения для dev стенд
-ES_HOST=datana-logs.datana.ru
-ES_PORT=9200
-ES_USERNAME=elastic
-ES_PASSWORD=changeme
-ES_USE_SSL=False
-
-### вредный перефик, с ним не работает
-###ES_URL_PREFIX=dev
-
-## адрес ELK
-## http://datana-logs.datana.ru:9200/
-
 
 ## Как запустить докер
 ### на сборку докера
