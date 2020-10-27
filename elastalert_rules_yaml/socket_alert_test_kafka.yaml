@@ -1,0 +1,73 @@
+name: "Socket Temperature Is UP"
+
+run_every:
+  seconds: 1
+
+realert:
+  minutes: 10
+
+index: ${RULE_INDEX}
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 1
+
+###################################
+type: metric_aggregation
+
+timeframe:
+  seconds: 1
+
+buffer_time:
+  seconds: 1
+
+metric_agg_key: "data.transportMessage.content.sensors.status"
+#metric_agg_script:
+
+# https://github.com/Yelp/elastalert/issues/1010
+timestamp_field: "@timestamp"
+timestamp_type: unix_ms
+
+metric_agg_type: "value_count"
+query_key: component.keyword
+doc_type: _doc
+
+bucket_interval:
+  seconds: 1
+
+sync_bucket_interval: true
+#allow_buffer_time_overlap: true
+#use_run_every_query_size: true
+
+min_threshold: 0
+max_threshold: 0.999
+
+
+writeback_index: dev_index_alert
+filter:
+  - query:
+      query_string:
+        query: "data.transportMessage.content.sensors.status: 0"
+
+
+alert:
+  - "telegram"
+  - "elastalert_modules.kafkaAlert.KafkaAlerter"
+
+use_local_time: True
+
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
+
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
+
+alert_text: "Для кафки тест. Server is UP. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}"
+alert_text_args: ["@timestamp", "component.keyword"]
+alert_text_type: alert_text_only
+
+
+# Kafka server (временно хард код)
+kafka_brokers: "worker1.datana.ru:9092"
+# Kafka producer name in Zookeeper
+kafka_groupID: "datana_elastalert"
+# Kafka topic
+kafka_topic: "datana-elastalert-alert"
+
+

@@ -17,7 +17,7 @@ do
   # take action on each file. $f store current file name
   cat $f | envsubst >$WORK_DATANA_DIR/$newNameFile
 done
-CONFIG_FILE_DATANA=$WORK_DATANA_DIR/elastalert_config_with_params.yaml
+CONFIG_FILE_DATANA=$WORK_DATANA_DIR/d_config.yaml
 CONFIG_FILE=/opt/config/elastalert_config.yaml
 
 mv -f $CONFIG_FILE_DATANA $CONFIG_FILE
