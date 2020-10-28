@@ -57,8 +57,8 @@ telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
 telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
-alert_text: "алерт сработал. Server is UP"
-alert_text_args: []
+alert_text: "Версия 2 (пока не готово). Server is UP. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}"
+alert_text_args: ["@timestamp", "component.keyword"]
 alert_text_type: alert_text_only
 
 
