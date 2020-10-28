@@ -7,6 +7,7 @@ LABEL description="ElastAlert suitable for Kubernetes and Helm"
 MAINTAINER Datana Ltd https://datana.ru
 
 RUN apk --update upgrade && \
+    apk add linux-headers && \
     apk add git && \
     apk add gettext && \
     apk add bash && \
@@ -14,7 +15,7 @@ RUN apk --update upgrade && \
     apk add libc-dev && \
     apk add librdkafka-dev && \
     apk add musl-dev && \
-    apk add python3-dev && \
+    apk add python3-dev
 
 ## копирование конфигов -------------
 COPY /elastalert_rules_yaml/*.yaml /opt/datana_templates/
@@ -23,7 +24,7 @@ COPY run.sh /opt/datana/
 
 # для кафки ------------------------
 RUN git clone -b dev https://github.com/0xStormEye/elastalert_kafka.git /tmp/elast_kafka && \
-    pip3 install confluent_kafka && \
+    pip3 install setuptools wheel confluent_kafka && \
     mkdir -p /opt/elastalert/elastalert_modules && \
     mv -f /tmp/elast_kafka/elastalert_modules/*.py /opt/elastalert/elastalert_modules/
 # КОНЕЦ: для кафки ------------------------
