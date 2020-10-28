@@ -1,3 +1,4 @@
+### FROM python:alpine
 FROM jertel/elastalert-docker:0.2.4
 ####FROM jertel/elastalert-docker:latest
 # Заимствовано от https://hub.docker.com/r/jertel/elastalert-docker/dockerfile
@@ -5,7 +6,6 @@ LABEL description="ElastAlert suitable for Kubernetes and Helm"
 
 MAINTAINER Datana Ltd https://datana.ru
 
-FROM python:alpine
 RUN apk --update upgrade && \
     apk add git && \
     apk add gettext && \
@@ -13,7 +13,8 @@ RUN apk --update upgrade && \
     apk add gcc && \
     apk add libc-dev && \
     apk add librdkafka-dev && \
-    rm -rf /var/cache/apk/*
+    apk add musl-dev && \
+    apk add python3-dev && \
 
 ## копирование конфигов -------------
 COPY /elastalert_rules_yaml/*.yaml /opt/datana_templates/
@@ -26,6 +27,9 @@ RUN git clone -b dev https://github.com/0xStormEye/elastalert_kafka.git /tmp/ela
     mkdir -p /opt/elastalert/elastalert_modules && \
     mv -f /tmp/elast_kafka/elastalert_modules/*.py /opt/elastalert/elastalert_modules/
 # КОНЕЦ: для кафки ------------------------
+
+RUN apk del gcc libc-dev librdkafka-dev musl-dev python3-dev && \
+    rm -rf /var/cache/apk/*
 
 ENV TZ "UTC"
 ENV LANG=C.UTF-8
