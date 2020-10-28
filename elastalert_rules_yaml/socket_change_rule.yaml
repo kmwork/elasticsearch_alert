@@ -1,0 +1,77 @@
+name: "Изменение температуры. Change of temperature"
+###name: "Change of temperature"
+
+run_every:
+  seconds: 1
+
+realert:
+  minutes: 10
+
+index: datana-smart-dev-logs-*
+####index: datana-smart-test-logs-*
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 1
+
+###################################
+# а изменение - мониторить значения температуры
+type: change
+
+# (Required, change specific)
+# The field to look for changes in
+compare_key: "data.transportMessage.content.sensors.data"
+
+timeframe:
+  seconds: 10
+
+buffer_time:
+  seconds: 10
+
+# https://github.com/Yelp/elastalert/issues/1010
+timestamp_field: "@timestamp"
+timestamp_type: unix_ms
+
+# (Required, change specific)
+# Ignore documents without the compare_key (country_name) field
+ignore_null: true
+
+# (Required, change specific)
+# The change must occur in two documents with the same query_key
+query_key: component.keyword
+
+#####query_key: "data.transportMessage.content.sensors.status"
+doc_type: _doc
+
+bucket_interval:
+  seconds: 1
+
+
+
+sync_bucket_interval: true
+#allow_buffer_time_overlap: true
+#use_run_every_query_size: true
+
+writeback_index: dev_index_alert
+filter:
+  - query:
+      query_string:
+        query: "data.transportMessage.content.sensors.data >= 1"
+#        query: "data.transportMessage.content.sensors.status: 0 OR data.transportMessage.content.sensors.status: 1"
+        #query: "(@timestamp > now-2000s)"
+
+alert:
+  - "telegram"
+
+use_local_time: True
+
+## телеграм для релизов датаны (для примера взято)
+##      def final constTelegramReleaseURL = "https://api.telegram.org/bot1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo/sendMessage?chat_id=-1001451379215&parse_mode=HTML"
+
+telegram_bot_token: 1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
+
+telegram_room_id: "@DatanaReleaseEvent"
+
+alert_text: "Версия 2 (пока не готово). Server is UP. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}"
+alert_text_args: ["@timestamp", "component.keyword"]
+alert_text_type: alert_text_only
+
+
