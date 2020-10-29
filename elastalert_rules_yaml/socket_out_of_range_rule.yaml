@@ -30,7 +30,9 @@ bucket_interval:
 
 filter:
   - query_string:
-      query: "(NOT data.transportMessage.content.sensors.data: [20 TO 30]) AND component: socket\\-adapter"
+      query: "(data.transportMessage.content.sensors.data: [20 TO 30]) AND component: \"adapter\u005C-socket\""
+      ### (NOT data.transportMessage.content.sensors.data: [20 TO 30]) AND component: "adapter\-socket "
+      ### unicode \u005C = \
 
 alert:
   - "telegram"
