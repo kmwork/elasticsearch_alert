@@ -1,7 +1,7 @@
 name: "[Datana:Socket:Spike] Socket Temperature Is UP"
 
 run_every:
-  seconds: 10
+  seconds: 1
 
 realert:
   minutes: 10
