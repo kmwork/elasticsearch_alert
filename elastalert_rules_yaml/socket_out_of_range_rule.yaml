@@ -1,7 +1,7 @@
 name: "[Datana:Socket:Any] Socket Temperature is out of range"
 
 run_every:
-  seconds: 10
+  seconds: 1
 
 realert:
   minutes: 10
