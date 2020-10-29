@@ -50,7 +50,7 @@ telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
 telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
-alert_text: "[Версия 3. Правило № 2, Type: Spike]. Socket adapter: подключение восстановлено. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
+alert_text: "[Версия 3. Правило № 2, Type: Spike (Резкий скачок)]. Socket adapter: подключение восстановлено. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
 alert_text_args: ["@timestamp", "component", "HOSTNAME"]
 alert_text_type: alert_text_only
 
