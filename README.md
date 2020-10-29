@@ -6,7 +6,7 @@
 ## Состав:
 ```
     + elastalert_rules_yaml -- папка YAML файлов
-    elastalert_config_with_params.yaml -- настройки для запуска скрипов и правила на YAML синтаксе
+    elastalert_config_with_params.yaml -- настройки для запуска скрипов и правила на YAML синтаксисе
     
     socker_alert_is_down_rule.yaml -- на случай "тишины", когда нет информации о температуре или она с ошибкой
     socket_alert_is_up_rule.yaml -- на восстановление сбоя, когда данные с датчика температруры стали поступать 
