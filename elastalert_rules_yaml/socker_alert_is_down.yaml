@@ -1,5 +1,4 @@
-name: "[Datana:Socket:V2] Server Down by temperature"
-###name: "Change of temperature"
+name: "[Datana:Socket:V2] Server is Down by temperature"
 
 run_every:
   seconds: 1
@@ -27,10 +26,6 @@ buffer_time:
 
 # https://github.com/Yelp/elastalert/issues/1010
 timestamp_field: "@timestamp"
-#### error elk --- ### timestamp_type: custom
-#### error elk --- ### timestamp_format: "%Y-%m-%d %H:%M:%S.%f%z"
-### 2020-10-28 14:43:46.543913+00:00 format elastelart
-##timestamp_type: unix
 timestamp_type: iso
 
 # (Required, change specific)
@@ -44,11 +39,6 @@ filter:
       data.transportMessage.content.sensors.data:
         from: 0.1
         to: 100000
-#
-#filter:
-#  - query:
-#      query_string:
-#        query: "data.transportMessage.content.sensors.data > 0"
 
 alert:
   - "telegram"

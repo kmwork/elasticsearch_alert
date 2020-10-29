@@ -1,4 +1,4 @@
-name: "Socket Temperature Is UP"
+name: "[Datana:Socket:V3] Socket Temperature Is UP"
 
 run_every:
   seconds: 1
@@ -8,23 +8,20 @@ realert:
 
 index: ${RULE_INDEX}
 # A rule that matches if num_events number of events occur within a timeframe
-num_events: 1
+num_events: 10
 
 ###################################
 type: metric_aggregation
 
 timeframe:
-  seconds: 1
+  seconds: 10
 
 buffer_time:
-  seconds: 1
-
-metric_agg_key: "data.transportMessage.content.sensors.status"
-#metric_agg_script:
+  seconds: 10
 
 # https://github.com/Yelp/elastalert/issues/1010
 timestamp_field: "@timestamp"
-timestamp_type: unix_ms
+timestamp_type: iso
 
 metric_agg_type: "value_count"
 query_key: component.keyword
@@ -43,10 +40,10 @@ max_threshold: 0.999
 
 writeback_index: dev_index_alert
 filter:
-  - query:
-      query_string:
-        query: "data.transportMessage.content.sensors.status: 0"
-
+  - range:
+      data.transportMessage.content.sensors.data:
+        from: 0.1
+        to: 100000
 
 alert:
   - "telegram"
@@ -57,8 +54,8 @@ telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
 telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
-alert_text: "Версия 2 (пока не готово). Server is UP. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}"
-alert_text_args: ["@timestamp", "component.keyword"]
+alert_text: "[Версия 3]. Ура, восстановилась температура за период (10 сек). Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
+alert_text_args: ["@timestamp", "component", "HOSTNAME"]
 alert_text_type: alert_text_only
 
 
