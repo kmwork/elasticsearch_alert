@@ -48,7 +48,7 @@ use_local_time: True
 
 telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
-telegram_room_id: "@DatanaReleaseEvent"
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
 alert_text: "[Версия Spike]. Ура, восстановилась температура за период (10 сек). Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
 alert_text_args: ["@timestamp", "component", "HOSTNAME"]
