@@ -9,7 +9,7 @@ realert:
 
 index: datana-smart-dev-logs-*
 # A rule that matches if num_events number of events occur within a timeframe
-num_events: 1
+num_events: 100000
 
 ###################################
 # а изменение - мониторить значения температуры
@@ -20,22 +20,18 @@ type: change
 compare_key: "data.transportMessage.content.sensors.data"
 
 timeframe:
-  hours: 1
+  seconds: 10
 
 buffer_time:
   seconds: 10
 
 # https://github.com/Yelp/elastalert/issues/1010
 timestamp_field: "@timestamp"
-#### error elk --- ### timestamp_type: custom
-#### error elk --- ### timestamp_format: "%Y-%m-%d %H:%M:%S.%f%z"
-### 2020-10-28 14:43:46.543913+00:00 format elastelart
-##timestamp_type: unix
 timestamp_type: iso
 
 # (Required, change specific)
 # Ignore documents without the compare_key (country_name) field
-ignore_null: false
+ignore_null: true
 
 # (Required, change specific)
 # The change must occur in two documents with the same query_key
@@ -44,9 +40,15 @@ query_key: component.keyword
 doc_type: _doc
 
 filter:
-  - query:
-      query_string:
-        query: "data.transportMessage.content.sensors.data>0"
+  - range:
+      data.transportMessage.content.sensors.data:
+        from: 0.1
+        to: 100000
+#
+#filter:
+#  - query:
+#      query_string:
+#        query: "data.transportMessage.content.sensors.data > 0"
 
 alert:
   - "telegram"
@@ -57,8 +59,10 @@ telegram_bot_token: 1171367749:AAFgyOW0LGRLl9NHo9TkZIGNUdd6cFKYGqo
 
 telegram_room_id: "@DatanaReleaseEvent"
 
-alert_text: "Версия 2 (пока не готово). Server is UP. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}"
-alert_text_args: ["@timestamp", "component"]
+alert_text: "Version temp -2 "
+###Версия 2 (пока не готово). Server is UP. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}"
+alert_text_args: [ ]
+###alert_text_args: ["@timestamp", "component"]
 alert_text_type: alert_text_only
 
 
