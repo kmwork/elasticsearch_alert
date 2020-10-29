@@ -31,7 +31,7 @@ bucket_interval:
 filter:
   - query_string:
       ### TODO МИНУС как то экранировать - возможно написать его UNICODE
-      query: "(NOT data.transportMessage.content.sensors.data: [20 TO 30]) AND component: socket-adapter"
+      query: "(NOT data.transportMessage.content.sensors.data: [29 TO 30]) AND component: socket\\-adapter"
 
 alert:
   - "telegram"
