@@ -1,0 +1,48 @@
+name: "[Datana:Socket:Any] Socket Temperature is out of range"
+
+run_every:
+  seconds: 1
+
+realert:
+  minutes: 10
+
+index: ${RULE_INDEX}
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 10
+
+type: any
+
+
+timeframe:
+  seconds: 10
+
+buffer_time:
+  seconds: 10
+
+# https://github.com/Yelp/elastalert/issues/1010
+timestamp_field: "@timestamp"
+timestamp_type: iso
+
+
+bucket_interval:
+  seconds: 10
+
+
+filter:
+  - query_string:
+      query: "(NOT data.transportMessage.content.sensors.data: [20 TO 30]) AND component: socket\\-adapter"
+
+alert:
+  - "telegram"
+
+use_local_time: True
+
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
+
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
+
+alert_text: "[Версия 3. Правило № 3, Type: Any (Частный случай правила)]. Socket adapter. Температура вне штатного диапазона 20..30 градусов. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
+alert_text_args: [ "@timestamp", "component", "HOSTNAME" ]
+alert_text_type: alert_text_only
+
+
