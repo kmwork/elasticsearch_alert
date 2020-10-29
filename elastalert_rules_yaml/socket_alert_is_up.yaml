@@ -1,7 +1,7 @@
-name: "[Datana:Socket:V3] Socket Temperature Is UP"
+name: "[Datana:Socket:Spike] Socket Temperature Is UP"
 
 run_every:
-  seconds: 1
+  seconds: 10
 
 realert:
   minutes: 10
@@ -10,8 +10,16 @@ index: ${RULE_INDEX}
 # A rule that matches if num_events number of events occur within a timeframe
 num_events: 10
 
-###################################
-type: metric_aggregation
+# (Required)
+# Type of alert.
+# the spike rule type compares the number of events within two sliding windows to each other
+type: spike
+
+spike_type: "up"
+
+threshold_cur: 1
+#threshold_ref: 5
+spike_height: 3
 
 timeframe:
   seconds: 10
@@ -23,22 +31,10 @@ buffer_time:
 timestamp_field: "@timestamp"
 timestamp_type: iso
 
-metric_agg_type: "value_count"
-query_key: component.keyword
-doc_type: _doc
 
 bucket_interval:
-  seconds: 1
+  seconds: 10
 
-sync_bucket_interval: true
-#allow_buffer_time_overlap: true
-#use_run_every_query_size: true
-
-min_threshold: 0
-max_threshold: 0.999
-
-
-writeback_index: dev_index_alert
 filter:
   - range:
       data.transportMessage.content.sensors.data:
@@ -52,9 +48,9 @@ use_local_time: True
 
 telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
-telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
+telegram_room_id: "@DatanaReleaseEvent"
 
-alert_text: "[Версия 3]. Ура, восстановилась температура за период (10 сек). Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
+alert_text: "[Версия Spike]. Ура, восстановилась температура за период (10 сек). Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
 alert_text_args: ["@timestamp", "component", "HOSTNAME"]
 alert_text_type: alert_text_only
 
