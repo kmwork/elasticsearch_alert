@@ -4,7 +4,7 @@ run_every:
   seconds: 1
 
 realert:
-  minutes: 10
+  minutes: 1
 
 index: ${RULE_INDEX}
 # A rule that matches if num_events number of events occur within a timeframe
@@ -13,6 +13,8 @@ num_events: 10
 ###################################
 # Тишина в эфире (flatline) — когда меньше, чем X событий за Y времени.
 type: flatline
+
+forget_keys: true
 
 
 ## threshold: Минимальное количество событий, при которых предупреждение не должно срабатывать.
