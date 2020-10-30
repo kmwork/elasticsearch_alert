@@ -23,4 +23,8 @@ CONFIG_FILE=/opt/config/elastalert_config.yaml
 mkdir -p /opt/config
 mv -f $CONFIG_FILE_DATANA $CONFIG_FILE
 
+## для откладки запросов в лог
+### exec elastalert --verbose --config $CONFIG_FILE --es_debug_trace /var/log/datana_alert.log
+
+# для боя, без тонны логов
 exec elastalert --verbose --config $CONFIG_FILE
