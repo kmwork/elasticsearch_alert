@@ -43,7 +43,7 @@ filter:
 
 alert:
   - telegram
-  - "opt.elastalert.elastalert_modules.kafkaAlert.KafkaAlerter"
+  - "elastalert_modules.kafkaAlert.KafkaAlerter"
 
 
 kafka_pub_location:
