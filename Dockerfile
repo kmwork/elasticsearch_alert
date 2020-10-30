@@ -25,7 +25,8 @@ COPY run.sh /opt/datana/
 ## Конец: копирование конфигов -------------
 
 # для кафки ------------------------
-RUN git clone -b dev https://github.com/0xStormEye/elastalert_kafka.git /tmp/elast_kafka && \
+RUN git clone -b dev https://github.com/kmwork/elastalert_kafka /tmp/elast_kafka && \
+#RUN git clone -b dev https://github.com/0xStormEye/elastalert_kafka.git /tmp/elast_kafka && \
     pip3 install setuptools wheel confluent_kafka && \
     mkdir -p /opt/elastalert/elastalert_modules && \
     mv -f /tmp/elast_kafka/elastalert_modules/*.py /opt/elastalert/elastalert_modules/
