@@ -53,5 +53,10 @@ ENV KAFKA_BROKERS_HOST=""
 ENV KAFKA_GROUP_ID=""
 ENV KAFKA_TOPIC=""
 
+## НЕ МЕНЯТЬ !!!! для кастомных модулей на питоне для кафки (в частности)
+ENV PYTHONPATH=/opt/elastalert/elastalert_modules
+ENV PYTHONDEBUG=true
+
+
 WORKDIR /opt/elastalert
 ENTRYPOINT ["/opt/datana/run.sh"]

@@ -4,7 +4,7 @@ run_every:
   seconds: 1
 
 realert:
-  minutes: 10
+  minutes: 1
 
 index: ${RULE_INDEX}
 # A rule that matches if num_events number of events occur within a timeframe
@@ -43,7 +43,7 @@ kafka_ca_location:
 kafka_priv_location:
 kafka_priv_pass:
 
-kafka_brokers: "${KAFKA_BROKERS_HOST}"
+kafka_brokers: "${KAFKA_BOOTSTRAP_SERVERS}"
 kafka_groupID: "${KAFKA_GROUP_ID}"
 kafka_topic: "${KAFKA_TOPIC}"
 

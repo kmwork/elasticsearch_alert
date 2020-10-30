@@ -51,7 +51,7 @@ kafka_ca_location:
 kafka_priv_location:
 kafka_priv_pass:
 
-kafka_brokers: "${KAFKA_BROKERS_HOST}"
+kafka_brokers: "${KAFKA_BOOTSTRAP_SERVERS}"
 kafka_groupID: "${KAFKA_GROUP_ID}"
 kafka_topic: "${KAFKA_TOPIC}"
 
