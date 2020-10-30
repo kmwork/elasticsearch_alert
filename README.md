@@ -52,7 +52,7 @@ docker run --env-file=./env_folder/env_dev_stand.env -p 3030:3030 -it 1ee7aaa809
     # для кафки
     export KAFKA_BROKERS_HOST=worker1.datana.ru:9092
     export KAFKA_GROUP_ID=dev_datana_elastalert
-    export KAFKA_TOPIC=datana_elastalert_alert_topic
+    export KAFKA_TOPIC=dev_elastalert_alert_topic
 ```
 
 ## Отладка правил
