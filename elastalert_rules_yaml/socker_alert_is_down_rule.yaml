@@ -41,15 +41,25 @@ filter:
         to: 100000
 
 alert:
-  - "telegram"
+  - telegram
+  - "elastalert_modules.kafkaAlert.KafkaAlerter"
+
+kafka_pub_location:
+kafka_ca_location:
+kafka_priv_location:
+kafka_priv_pass:
+
+kafka_brokers: "${KAFKA_BROKERS_HOST}"
+kafka_groupID: "${KAFKA_GROUP_ID}"
+kafka_topic: "${KAFKA_TOPIC}"
+
 
 use_local_time: True
 
 telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
-
 telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
-alert_text: "[Версия 3. Правило № 1, Type: Flatline (Тишина в эфире)]. Socket adapter: нет данных более 10 сек. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
+alert_text: "[Версия 4: Telegram + Kafka. Правило № 1, Type: Flatline (Тишина в эфире)]. Socket adapter: нет данных более 10 сек. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
 alert_text_args: ["@timestamp", "component", "HOSTNAME"]
 alert_text_type: alert_text_only
 
