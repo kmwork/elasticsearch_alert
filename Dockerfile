@@ -14,6 +14,7 @@ RUN apk --update upgrade && \
     apk add gcc && \
     apk add libc-dev && \
     apk add librdkafka-dev && \
+    apk add librdkafka && \
     apk add musl-dev && \
     apk add python3-dev
 
