@@ -35,8 +35,14 @@ filter:
       ### unicode \u005C = \
 
 alert:
-  - "telegram"
-  - "elastalert_modules.kafkaAlert.KafkaAlerter"
+  - telegram
+  - elastalert_modules.kafkaAlert.KafkaAlerter:
+      - kafka_brokers: "${KAFKA_BROKERS_HOST}"
+      - kafka_groupID: "${KAFKA_GROUP_ID}"
+      - kafka_topic: "${KAFKA_TOPIC}"
+
+
+
 
 use_local_time: True
 
@@ -48,7 +54,5 @@ alert_text: "[Версия 4: Telegram + Kafka. Правило № 3, Type: Any 
 alert_text_args: [ "@timestamp", "component", "HOSTNAME" ]
 alert_text_type: alert_text_only
 
-kafka_brokers: "${KAFKA_BROKERS_HOST}"
-kafka_groupID: "${KAFKA_GROUP_ID}"
-kafka_topic: "${KAFKA_TOPIC}"
+
 
