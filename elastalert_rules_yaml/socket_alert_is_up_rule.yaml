@@ -1,0 +1,57 @@
+name: "[Datana:Socket:Spike] Socket Temperature Is UP"
+
+run_every:
+  seconds: 1
+
+realert:
+  minutes: 10
+
+index: ${RULE_INDEX}
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 10
+
+# (Required)
+# Type of alert.
+# the spike rule type compares the number of events within two sliding windows to each other
+type: spike
+
+spike_type: "up"
+
+threshold_cur: 1
+#threshold_ref: 5
+spike_height: 3
+
+timeframe:
+  seconds: 10
+
+buffer_time:
+  seconds: 10
+
+# https://github.com/Yelp/elastalert/issues/1010
+timestamp_field: "@timestamp"
+timestamp_type: iso
+
+
+bucket_interval:
+  seconds: 10
+
+filter:
+  - range:
+      data.transportMessage.content.sensors.data:
+        from: 0.1
+        to: 100000
+
+alert:
+  - "telegram"
+
+use_local_time: True
+
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
+
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
+
+alert_text: "[Версия 3. Правило № 2, Type: Spike (Резкий скачок)]. Socket adapter: подключение восстановлено. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
+alert_text_args: ["@timestamp", "component", "HOSTNAME"]
+alert_text_type: alert_text_only
+
+

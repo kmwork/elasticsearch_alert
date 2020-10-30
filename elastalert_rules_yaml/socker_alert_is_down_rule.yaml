@@ -1,0 +1,56 @@
+name: "[Datana:Socket:V2] Server is Down by temperature"
+
+run_every:
+  seconds: 1
+
+realert:
+  minutes: 10
+
+index: ${RULE_INDEX}
+# A rule that matches if num_events number of events occur within a timeframe
+num_events: 10
+
+###################################
+# Тишина в эфире (flatline) — когда меньше, чем X событий за Y времени.
+type: flatline
+
+
+## threshold: Минимальное количество событий, при которых предупреждение не должно срабатывать.
+threshold: 1
+
+timeframe:
+  seconds: 10
+
+buffer_time:
+  seconds: 10
+
+# https://github.com/Yelp/elastalert/issues/1010
+timestamp_field: "@timestamp"
+timestamp_type: iso
+
+# (Required, change specific)
+# Ignore documents without the compare_key (country_name) field
+ignore_null: true
+
+doc_type: _doc
+
+filter:
+  - range:
+      data.transportMessage.content.sensors.data:
+        from: 0.1
+        to: 100000
+
+alert:
+  - "telegram"
+
+use_local_time: True
+
+telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
+
+telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
+
+alert_text: "[Версия 3. Правило № 1, Type: Flatline (Тишина в эфире)]. Socket adapter: нет данных более 10 сек. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
+alert_text_args: ["@timestamp", "component", "HOSTNAME"]
+alert_text_type: alert_text_only
+
+

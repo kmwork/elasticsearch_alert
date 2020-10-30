@@ -7,7 +7,7 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://docker:2375
   DOCKER_TLS_CERTDIR: ""
-  IMAGE_VERSION: 0.0.2
+  IMAGE_VERSION: 0.0.3
   IMAGE_NAME: $DOCKER_REGISTRY_HOST/datana_smart_alerts
 
 stages:
