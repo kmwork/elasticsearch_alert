@@ -1,4 +1,4 @@
-name: "[Datana:Socket:V2] Server is Down by temperature"
+name: "[Datana:Socket:V4] Server is Down by temperature"
 
 run_every:
   seconds: 1

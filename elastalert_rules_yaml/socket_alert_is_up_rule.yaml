@@ -1,4 +1,4 @@
-name: "[Datana:Socket:Spike] Socket Temperature Is UP"
+name: "[Datana:Socket:Spike:V4] Socket Temperature Is UP"
 
 run_every:
   seconds: 1

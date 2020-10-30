@@ -1,4 +1,4 @@
-name: "[Datana:Socket:Any] Socket Temperature is out of range"
+name: "[Datana:Socket:Any:V4] Socket Temperature is out of range"
 
 run_every:
   seconds: 1
