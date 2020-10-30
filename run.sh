@@ -24,6 +24,7 @@ mkdir -p /opt/config
 mv -f $CONFIG_FILE_DATANA $CONFIG_FILE
 
 ## для кастомных модулей на питоне для кафки (в частности)
-export PYTHONPATH=$PYTHONPATH:/opt/elastalert
+export PYTHONPATH=/opt/elastalert/elastalert_modules:$PYTHONPATH
+export PYTHONDEBUG=true
 
 exec elastalert --verbose --config $CONFIG_FILE
