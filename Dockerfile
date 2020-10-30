@@ -8,6 +8,7 @@ MAINTAINER Datana Ltd https://datana.ru
 
 RUN apk --update upgrade && \
     apk add linux-headers && \
+    apk add build-base && \
     apk add git && \
     apk add gettext && \
     apk add bash && \
