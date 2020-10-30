@@ -1,5 +1,5 @@
 ### FROM python:alpine
-FROM jertel/elastalert-docker:0.2.4
+FROM jertel/elastalert-docker:latest
 ####FROM jertel/elastalert-docker:latest
 # Заимствовано от https://hub.docker.com/r/jertel/elastalert-docker/dockerfile
 LABEL description="ElastAlert suitable for Kubernetes and Helm"
@@ -46,6 +46,12 @@ ENV ES_WRITEBACK_ALIAS=dev_alerts
 ENV RULE_INDEX=""
 ENV RULE_TELEGRAM_BOT_TOKEN=""
 ENV RULE_TELEGRAM_ROOM_ID=""
+### ENV ES_URL_PREFIX=""
+
+# для кафки
+ENV KAFKA_BROKERS_HOST=""
+ENV KAFKA_GROUP_ID=""
+ENV KAFKA_TOPIC=""
 
 WORKDIR /opt/elastalert
 ENTRYPOINT ["/opt/datana/run.sh"]

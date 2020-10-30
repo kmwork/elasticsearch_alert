@@ -36,6 +36,7 @@ filter:
 
 alert:
   - "telegram"
+  - "elastalert_modules.kafkaAlert.KafkaAlerter"
 
 use_local_time: True
 
@@ -43,8 +44,11 @@ telegram_bot_token: ${RULE_TELEGRAM_BOT_TOKEN}
 
 telegram_room_id: "${RULE_TELEGRAM_ROOM_ID}"
 
-alert_text: "[Версия 3. Правило № 3, Type: Any (Частный случай правила)]. Socket adapter. Температура вне штатного диапазона 20..30 градусов. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
+alert_text: "[Версия 4: Telegram + Kafka. Правило № 3, Type: Any (Частный случай правила)]. Socket adapter. Температура вне штатного диапазона 20..30 градусов. Время (формат ISO без TimeZone) = {0}, Модуль (Тип приложения) = {1}, host = {2}"
 alert_text_args: [ "@timestamp", "component", "HOSTNAME" ]
 alert_text_type: alert_text_only
 
+kafka_brokers: "${KAFKA_BROKERS_HOST}"
+kafka_groupID: "${KAFKA_GROUP_ID}"
+kafka_topic: "${KAFKA_TOPIC}"
 

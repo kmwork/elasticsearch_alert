@@ -23,4 +23,4 @@ CONFIG_FILE=/opt/config/elastalert_config.yaml
 mkdir -p $CONFIG_FILE
 mv -f $CONFIG_FILE_DATANA $CONFIG_FILE
 
-bash /opt/elastalert/run.sh
+python3 -m elastalert.elastalert --verbose --config $CONFIG_FILE

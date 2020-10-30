@@ -46,7 +46,7 @@ alert_time_limit:
   days: 2
 
 use_ssl: ${ES_USE_SSL}
-###es_url_prefix: dev
+### es_url_prefix: ${ES_URL_PREFIX}
 
 # Custom logging configuration
 # If you want to setup your own logging configuration to log into
